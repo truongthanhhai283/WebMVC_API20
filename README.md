@@ -304,7 +304,7 @@
 				IPAddress varchar(50) not null
 			)
 			
-#	Bai 3 	Dựng cấu trúc solution cho dự án
+#	Bài 3 	Dựng cấu trúc solution cho dự án
 	*	Các thành phần của Solution 
 			Class Library  - ShopOnline.Common: Chứa các lớp tiện ích dùng chung cho dự án 
 			Class Library  - ShopOnline.Model: Chứa các lớp Domain Entities của dự án 
@@ -345,3 +345,26 @@
 			Check out code 
 			Commit và push code 
 			Tách nhánh code 
+#	Bài 4: Cách sử dụng Git để quản lý Source code trong dự án thực tế 
+	Giới thiệu về Git 
+		Git là một hệ thống quản lý version được sử dụng rộng rãi trong ngành phát triển phần mềm. 		
+		Được phát triển năm 2005 bởi Linus Torvalds 
+		Có nhiều ưu điểm so với các Source control management (SCM) khác như SVN hay TFS. 
+	
+	Một số dịch vụ Git Server: 
+			Github 
+			Bitbucket 
+			GitLab 
+	Dịch vụ 
+		Các bạn có thể dùng một trong 2 dịch vụ free sau đây để lưu trữ source code sử dụng Git để quản lý: Github: Project được lưu miễn phí nhưng phải ở chế độ public còn nếu private phải nâng cấp lên gói Micro giá là 7USD/tháng. 
+		Bitbucket: Được sử dụng chế độ private free nhưng giới hạn member là 5. Thao tác với Git thông qua Source Tree của Atlassian Có thể dùng lệnh nếu cần thiết. 
+	
+	Các bước thực hiện 
+	1. Cài đặt git client lên máy cài đặt Git Extension lên Visual Studio 
+	2. Tạo tài khoản Git 
+	3. Tạo repository 
+	4. Cài đặt source tree để quản lý qua giao diện 
+	5. Check out code 
+	6. Commit và push code 
+	7. Tách nhánh code 
+	
