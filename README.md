@@ -315,7 +315,7 @@
 		
 		REFERENCES:
 			Web : Trừ unit test
-			Data: Common
+			Data: Common, model
 			Unit Test: All
 			Service: Common, data, model
 			
@@ -384,4 +384,305 @@
 				Tạo các class triển khai interface cho các thành phần dùng chung
 				+ Auditable
 				+ IAuditable
+
+#	Bai 6 Xay dung tang Data Access Layer voi Entity Framwork CodeFirst
+	*	Tổng quan bài học 
+	*	Một số lưu ý ở bài trước về tạo model cho entity framework 
+			Chú ý đặt thuộc tính hợp lý cho primary key, foreign key. 
+			Đặt độ dài cho các trường là string nếu không mặc định sẽ là nvachar(max) 
+			Hoàn thành việc tạo entity cho các bảng còn lại. 
+			Commit code lên Git 
+			Tách nhánh sang bài 6 
+	*	Dựng tầng data ở project ShopOnline.Data với việc sử dụng Repository, Unit Of Work và Factory 
+	*	Cách Migration project C# vào database SQL Server 
+	--------------------------------------------------------------------
+	
+	*	ShopOnline.Data: Hạ tầng
+		UnitOfWork: Đảm bảo có nhiều thao tác trên cùng 1 giao dịch, đảm bảo sự toàn vẹn giữa nhiều thao tác
+			chỉ đảm bảo 1 connection. Đảm dảo toàn vẹn
+		Repository: lớp ảo hóa, nằm giữa phần truy cập dữ liệu DB và business. Giúp tối ưu câu lệnh logic
+		chung: thêm/sửa/xóa -> Không cần viết lại -> Giảm lượng code, dễ bảo trì, quản lý soure code dễ dàng
+	
+		
+	* 	Thực hiện:
+	ShopOnline.Data: 
+		- Tạo 2 folder Repositories(chuyên chứa repository) & Infrastructure
+		- Infrastructure:
+			Tạo 3 interface: IRepository & IDbFactory & IUnitOfWork: Định nghĩa các giao tiếp cho các class
+			Cho public vào tất cả các interface
+			
+			+ IUnitOfWork: 
+					void Commit();
+					
+				
+			+ IDbFactory:IDisposable Giao tiếp để khởi tạo đói tượng trong entity
+				public interface IDbFactory:IDisposable
+				{
+					//Init dbcontext
+					 ShopOnlineDbContext Init();
+				}
+				
+			+ IRepository: định nghĩa các p/thức có sẵn
+					public interface IRepository<T> where T : class
+					{
+						// Marks an entity as new
+						void Add(T entity);
+
+						// Marks an entity as modified
+						void Update(T entity);
+
+						// Marks an entity to be removed
+						void Delete(T entity);
+
+						void Delete(int id);
+						//Delete multi records
+						void DeleteMulti(Expression<Func<T, bool>> where);
+
+						// Get an entity by int id
+						T GetSingleById(int id);
+
+						T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null);
+
+						IQueryable<T> GetAll(string[] includes = null);
+
+						IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null);
+
+						IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] includes = null);
+
+						int Count(Expression<Func<T, bool>> where);
+
+						bool CheckContains(Expression<Func<T, bool>> predicate);
+					}
+					
+			
+			+ Tạo class Disposable : IDisposable
+				public class Disposable : IDisposable
+				{
+					//Cài đặt các phương thức tự động hủy
+					private bool isDisposed;
+
+					~Disposable()
+					{
+						Dispose(false);
+					}
+
+					public void Dispose()
+					{
+						Dispose(true);
+						GC.SuppressFinalize(this);
+					}
+					private void Dispose(bool disposing)
+					{
+						if (!isDisposed && disposing)
+						{
+							DisposeCore();
+						}
+
+						isDisposed = true;
+					}
+
+					// Ovveride this to dispose custom objects
+					protected virtual void DisposeCore()
+					{
+					}
+				}
+				
+			+ Tạo public class DbFactory : Disposable, IDbFactory
+				{
+					private ShopOnlineDbContext dbContext;
+
+					public ShopOnlineDbContext Init()
+					{
+						return dbContext ?? (dbContext = new ShopOnlineDbContext());
+					}
+
+
+					protected override void DisposeCore()
+					{
+						if (dbContext != null)
+							dbContext.Dispose();
+					}
+				}
+				
+			+ Tạo public class UnitOfWork : IUnitOfWork
+				{
+					private readonly IDbFactory dbFactory;
+					private ShopOnlineDbContext dbContext;
+
+					public UnitOfWork(IDbFactory dbFactory)
+					{
+						this.dbFactory = dbFactory;
+					}
+
+					public ShopOnlineDbContext DbContext
+					{
+						get { return dbContext ?? (dbContext = dbFactory.Init()); }
+					}
+
+					public void Commit()
+					{
+						DbContext.SaveChanges();
+					}
+
+				}
+				
+				
+			Thực thi các class đã định nghĩa trong IRepository
+			+  Tạo public abstract class RepositoryBase<T> where T : class
+				{
+					#region Properties
+					private ShopOnlineDbContext dataContext;
+					private readonly IDbSet<T> dbSet;
+
+					protected IDbFactory DbFactory
+					{
+						get;
+						private set;
+					}
+
+					protected ShopOnlineDbContext DbContext
+					{
+						get { return dataContext ?? (dataContext = DbFactory.Init()); }
+					}
+					#endregion
+
+					protected RepositoryBase(IDbFactory dbFactory)
+					{
+						DbFactory = dbFactory;
+						dbSet = DbContext.Set<T>();
+					}
+
+					#region Implementation
+					public virtual void Add(T entity)
+					{
+						dbSet.Add(entity);
+					}
+
+					public virtual void Update(T entity)
+					{
+						dbSet.Attach(entity);
+						dataContext.Entry(entity).State = EntityState.Modified;
+					}
+
+					public virtual void Delete(T entity)
+					{
+						dbSet.Remove(entity);
+					}
+
+					public virtual void DeleteMulti(Expression<Func<T, bool>> where)
+					{
+						IEnumerable<T> objects = dbSet.Where<T>(where).AsEnumerable();
+						foreach (T obj in objects)
+							dbSet.Remove(obj);
+					}
+
+					public virtual T GetSingleById(int id)
+					{
+						return dbSet.Find(id);
+					}
+
+					public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where, string includes)
+					{
+						return dbSet.Where(where).ToList();
+					}
+
+
+					public virtual int Count(Expression<Func<T, bool>> where)
+					{
+						return dbSet.Count(where);
+					}
+
+					public IQueryable<T> GetAll(string[] includes = null)
+					{
+						//HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
+						if (includes != null && includes.Count() > 0)
+						{
+							var query = dataContext.Set<T>().Include(includes.First());
+							foreach (var include in includes.Skip(1))
+								query = query.Include(include);
+							return query.AsQueryable();
+						}
+
+						return dataContext.Set<T>().AsQueryable();
+					}
+
+					public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
+					{
+						return GetAll(includes).FirstOrDefault(expression);
+					}
+
+					public virtual IQueryable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
+					{
+						//HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
+						if (includes != null && includes.Count() > 0)
+						{
+							var query = dataContext.Set<T>().Include(includes.First());
+							foreach (var include in includes.Skip(1))
+								query = query.Include(include);
+							return query.Where<T>(predicate).AsQueryable<T>();
+						}
+
+						return dataContext.Set<T>().Where<T>(predicate).AsQueryable<T>();
+					}
+
+					public virtual IQueryable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
+					{
+						int skipCount = index * size;
+						IQueryable<T> _resetSet;
+
+						//HANDLE INCLUDES FOR ASSOCIATED OBJECTS IF APPLICABLE
+						if (includes != null && includes.Count() > 0)
+						{
+							var query = dataContext.Set<T>().Include(includes.First());
+							foreach (var include in includes.Skip(1))
+								query = query.Include(include);
+							_resetSet = predicate != null ? query.Where<T>(predicate).AsQueryable() : query.AsQueryable();
+						}
+						else
+						{
+							_resetSet = predicate != null ? dataContext.Set<T>().Where<T>(predicate).AsQueryable() : dataContext.Set<T>().AsQueryable();
+						}
+
+						_resetSet = skipCount == 0 ? _resetSet.Take(size) : _resetSet.Skip(skipCount).Take(size);
+						total = _resetSet.Count();
+						return _resetSet.AsQueryable();
+					}
+
+					public bool CheckContains(Expression<Func<T, bool>> predicate)
+					{
+						return dataContext.Set<T>().Count<T>(predicate) > 0;
+					}
+					#endregion
+				}
+				
+				
+		+ Tạo class public DBContext: DBContext 
+				  public ShopOnlineDbContext():base("ShopOnline") //ShopOnline: key của connection
+				  {
+						//Load 1 bẳng cha thì không tự động include thêm bảng con
+						this.Configuration.LazyLoadingEnabled = false;
+				  }
+				  
+				   //Set DbSet cho tất cả các bảng có trong Database
+				   public DbSet<Footer> Footers { set; get; }
+				   ...
+				   
+				   //Ghi đè p/thức dbcontext, sẽ chạy khi khởi tạo entity framework
+					protected override void OnModelCreating(DbModelBuilder builder)
+					{
+
+					}
+			
+		+ Add connectstring App.config
+		  <connectionStrings>
+			<clear/>
+			<add name="ShopOnlineConnection" connectionString="Data Source=.;Initial Catalog=ShopOnline;Integrated Security=True; MultipleActiveResultSets=True"/>
+		  </connectionStrings>
+		  
+			MultipleActiveResultSets: cho phép thực thi nhiều get trong cùng 1 connection đơn lẻ
+			Integrated Security=True: Không sử dụng authen của windows
+			
+		
+			
+	
 		
