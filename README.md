@@ -367,4 +367,21 @@
 	5. Check out code 
 	6. Commit và push code 
 	7. Tách nhánh code 
+
+#	Bài 5: Dựng phần Domain Entities cho dự án 
+	*	Tổng quan bài học 
+			Tạo ra danh sách các class tương ứng với danh sách các bảng cần tạo trong SQL Server 
+			Sử dụng các attribute có sẵn trong namespace: 
+				using System.ComponentModel.DataAnnotations; 
+				using System.ComponentModel.DataAnnotations.Schema; 
+				Sau khi migration sẽ generate ra database theo cấu trúc class. Đó chính là codefirst. 
 	
+	*	Thực hiện:
+		- ShopOnline.model 
+			Tạo folder Models & Abstract
+			+ Models: Tạo class tương ứng với các table trong SQL
+			+ Abstract: 
+				Tạo các class triển khai interface cho các thành phần dùng chung
+				+ Auditable
+				+ IAuditable
+		
