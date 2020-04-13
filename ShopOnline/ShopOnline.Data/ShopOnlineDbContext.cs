@@ -10,7 +10,7 @@ namespace ShopOnline.Data
 {
     public class ShopOnlineDbContext : DbContext
     {
-        public ShopOnlineDbContext() : base("ShopOnline")
+        public ShopOnlineDbContext() : base("ShopOnlineConnection")
         {
             //Load 1 bẳng cha thì không tự động include thêm bảng con
             this.Configuration.LazyLoadingEnabled = false;

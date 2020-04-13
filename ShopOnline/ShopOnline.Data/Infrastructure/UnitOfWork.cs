@@ -9,14 +9,14 @@ namespace ShopOnline.Data.Infrastructure
     public class UnitOfWork : IUnitOfWork
     {
         private readonly IDbFactory dbFactory;
-        private TeduShopDbContext dbContext;
+        private ShopOnlineDbContext dbContext;
 
         public UnitOfWork(IDbFactory dbFactory)
         {
             this.dbFactory = dbFactory;
         }
 
-        public TeduShopDbContext DbContext
+        public ShopOnlineDbContext DbContext
         {
             get { return dbContext ?? (dbContext = dbFactory.Init()); }
         }
@@ -25,5 +25,6 @@ namespace ShopOnline.Data.Infrastructure
         {
             DbContext.SaveChanges();
         }
+
     }
 }

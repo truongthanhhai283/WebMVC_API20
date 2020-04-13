@@ -51,10 +51,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Infrastructure\DbFactory.cs" />
+    <Compile Include="Infrastructure\Disposable.cs" />
     <Compile Include="Infrastructure\IDbFactory.cs" />
     <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\RepositoryBase.cs" />
+    <Compile Include="Infrastructure\UnitOfWork.cs" />
+    <Compile Include="Migrations\202004131111321_initialDB.cs" />
+    <Compile Include="Migrations\202004131111321_initialDB.designer.cs">
+      <DependentUpon>202004131111321_initialDB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ProductCategoryRepository.cs" />
+    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="ShopOnlineDbContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -65,9 +77,15 @@
       <Project>{003865e8-c682-42fe-ae7e-c5e95524e48d}</Project>
       <Name>ShopOnline.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ShopOnline.Model\ShopOnline.Model.csproj">
+      <Project>{ef517b75-45d4-453b-a1c3-e6c89d6e0f8b}</Project>
+      <Name>ShopOnline.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <EmbeddedResource Include="Migrations\202004131111321_initialDB.resx">
+      <DependentUpon>202004131111321_initialDB.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

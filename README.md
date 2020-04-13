@@ -3,6 +3,10 @@
 # Lỗi và cách fix
 	1. Data Diagram Error
 		database -> properties -> file > browser sa -> ok
+	2. The property 'Status' is not a String or Byte array. Length can only be configured for String and Byte array properties.
+		fix: xóa maxlangth 
+	3. Unable to determine composite primary key ordering for type: 2 key trong 1 bảng
+		fix [Column(Order =1)]/[Column(Order =2)]
 		
 #	Bài 1: Giới thiệu tổng quan về dự án và công nghệ sử dụng 
 	*	Đây là một dự án website bán hàng trực tuyến có các chức năng sau:  
@@ -406,7 +410,7 @@
 		
 	* 	Thực hiện:
 	ShopOnline.Data: 
-		- Tạo 2 folder Repositories(chuyên chứa repository) & Infrastructure
+		- Tạo 2 folder Repositories(chuyên chứa repository) & Infrastructure(Truy cập dữ liệu và model)
 		- Infrastructure:
 			Tạo 3 interface: IRepository & IDbFactory & IUnitOfWork: Định nghĩa các giao tiếp cho các class
 			Cho public vào tất cả các interface
@@ -682,7 +686,45 @@
 			MultipleActiveResultSets: cho phép thực thi nhiều get trong cùng 1 connection đơn lẻ
 			Integrated Security=True: Không sử dụng authen của windows
 			
+#	Bài 7: Triển khai Repository Pattern và Generate ra cơ sở dữ liệu SQL Server từ Code First 
+	* 	Hoàn thành các repository và fix lỗi 
+	* 	Hoàn thành các lớp repository trong hệ thống 
+	* 	Migration database vào SQL 
+	* 	Một số lỗi thường gặp 
+			Chỉ định khóa chính cho 2 trường phải có thuộc tính [Column] 
+			Đặt MaxLength cho trường status bool 
+			Thiếu Connection string trong web.config vì nó nhận ở project web 
+			Kiểu dữ liệu của 2 cột reference phải cùng kiểu 
+			Thiếu provider name trong connection string 
+	//----------------------------------------------------------------------
+	ShopOnline.Data
+		Repositories
+			+ Tạo class ..Repository: 
+				 public interface IProductCategoryRepository
+					{
+						//Định nghĩa các phương thức để sử dụng thêm 
+						IEnumerable<ProductCategory> GetByAlias(string alias);
+					}
+
+					public class ProductCategoryRepository : RepositoryBase<ProductCategory>, IProductCategoryRepository
+					{
+						//Truyền vào dbfactory -> RepositoryBase phương thức phải có dbfactory truyền vào
+						public ProductCategoryRepository(IDbFactory dbFactory)
+							: base(dbFactory)
+						{
+						}
+
+						public IEnumerable<ProductCategory> GetByAlias(string alias)
+						{
+							return this.DbContext.ProductCategories.Where(x => x.Alias == alias);
+						}
+					}
+	* migration DB
+		console.packagemanaget - > default -> shoponline.data
+		enable-migrations
+		add-migration initial
+		update-database
 		
-			
+		lỗi khi update-database: thiếu providerName="system.Data.sqlClient"
 	
 		

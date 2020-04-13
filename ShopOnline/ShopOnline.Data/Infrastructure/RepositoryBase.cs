@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShopOnline.Data.Infrastructure
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         #region Properties
         private ShopOnlineDbContext dataContext;
