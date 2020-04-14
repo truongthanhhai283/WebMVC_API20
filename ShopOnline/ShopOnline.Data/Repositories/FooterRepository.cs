@@ -1,7 +1,7 @@
-﻿using TeduShop.Data.Infrastructure;
-using TeduShop.Model.Models;
+﻿using ShopOnline.Data.Infrastructure;
+using ShopOnline.Model.Models;
 
-namespace TeduShop.Data.Repositories
+namespace ShopOnline.Data.Repositories
 {
     public interface IFooterRepository : IRepository<Footer>
     {
