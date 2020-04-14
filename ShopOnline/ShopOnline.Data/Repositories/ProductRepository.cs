@@ -2,8 +2,8 @@
 using ShopOnline.Model.Models;
 
 namespace ShopOnline.Data.Repositories
-{
-    public interface IProductRepository
+{ 
+    public interface IProductRepository : IRepository<Product>
     {
     }
 
