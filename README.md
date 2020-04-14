@@ -838,3 +838,138 @@
 	+ 	Edit models post
 		    public virtual IEnumerable<PostTag> PostTags { set; get; }
 
+#	Bài 9: Hoàn thiện tầng Service và viết custom method ngoài Repository 
+	+ 	Tạo class PostCategoryService
+		public interface IPostCategoryService
+		{
+			void Add(PostCategory postCategory);
+
+			void Update(PostCategory postCategory);
+
+			void Delete(int id);
+
+			IEnumerable<PostCategory> GetAll();
+
+			IEnumerable<PostCategory> GetAllByParentId(int parentId);
+
+			PostCategory GetById(int id);
+		}
+
+		public class PostCategoryService : IPostCategoryService
+		{
+			private IPostCategoryRepository _postCategoryRepository;
+			private IUnitOfWork _unitOfWork;
+
+			public PostCategoryService(IPostCategoryRepository postCategoryRepository, IUnitOfWork unitOfWork)
+			{
+				this._postCategoryRepository = postCategoryRepository;
+				this._unitOfWork = unitOfWork;
+			}
+
+			public void Add(PostCategory postCategory)
+			{
+				_postCategoryRepository.Add(postCategory);
+			}
+
+			public void Delete(int id)
+			{
+				_postCategoryRepository.Delete(id);
+			}
+
+			public IEnumerable<PostCategory> GetAll()
+			{
+				return _postCategoryRepository.GetAll();
+			}
+
+			public IEnumerable<PostCategory> GetAllByParentId(int parentId)
+			{
+				return _postCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);
+			}
+
+			public PostCategory GetById(int id)
+			{
+				return _postCategoryRepository.GetSingleById(id);
+			}
+
+			public void Update(PostCategory postCategory)
+			{
+				_postCategoryRepository.Update(postCategory);
+			}
+	
+	+	Tạo class PostServices
+		//Triển khai: Khai báo interface
+		public interface IPostService
+		{
+			void Add(Post post);
+
+			void Update(Post post);
+
+			void Delete(int id);
+
+			IEnumerable<Post> GetAll();
+
+			//Lấy all trang
+			IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
+
+			//Lấy ra 1 bản ghi
+			Post GetById(int id);
+
+			//Lấy ra theo tag
+			IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
+
+			void SaveChanges();
+		}
+		public class PostService : IPostService
+		{
+			//Các repository cần gọi 
+			IPostRepository _postRepository;
+			IUnitOfWork _unitOfWork;
+
+			public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork)
+			{
+				this._postRepository = postRepository;
+				this._unitOfWork = unitOfWork;
+			}
+
+			public void Add(Post post)
+			{
+				_postRepository.Add(post);
+			}
+
+			public void Delete(int id)
+			{
+				_postRepository.Delete(id);
+			}
+
+			//Select được post và category
+			public IEnumerable<Post> GetAll()
+			{
+				return _postRepository.GetAll(new string[] { "PostCategory" });
+			}
+
+			public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
+			{
+				//TODO: Select all post by tag
+				return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+			}
+
+			public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
+			{
+				return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+			}
+
+			public Post GetById(int id)
+			{
+				return _postRepository.GetSingleById(id);
+			}
+
+			public void SaveChanges()
+			{
+				_unitOfWork.Commit();
+			}
+
+			public void Update(Post post)
+			{
+				_postRepository.Update(post);
+			}
+		}
