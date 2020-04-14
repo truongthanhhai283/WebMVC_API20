@@ -696,7 +696,7 @@
 			Thiếu Connection string trong web.config vì nó nhận ở project web 
 			Kiểu dữ liệu của 2 cột reference phải cùng kiểu 
 			Thiếu provider name trong connection string 
-	//----------------------------------------------------------------------
+	----------------------------------------------------------------------
 	ShopOnline.Data
 		Repositories
 			+ Tạo class ..Repository: 
@@ -719,12 +719,122 @@
 							return this.DbContext.ProductCategories.Where(x => x.Alias == alias);
 						}
 					}
-	* migration DB
-		console.packagemanaget - > default -> shoponline.data
-		enable-migrations
-		add-migration initial
-		update-database
-		
-		lỗi khi update-database: thiếu providerName="system.Data.sqlClient"
+	* 	migration DB
+			console.packagemanaget - > default -> shoponline.data
+			enable-migrations
+			add-migration initial
+			update-database
+			
+		Lỗi khi update-database: thiếu providerName="system.Data.sqlClient"
 	
+#	Bài 8: Dựng tầng Service để xử lý logic 
+	Nội dung bài học 
+	* 	Tại sao không gọi luôn repository luôn trong Controller hoặc ApiController mà lại đi qua servcie? 
+			Tầng servcie thực thi nhiệm vụ xử lý logic
+			Tầng repository thực thi các câu lệnh common : thêm/sửa/xóa
+			Tạo tầng service gọi đến nhiều repository khác nhau -> độc lập module nghiệp vụ vào service
+			Giúp API chỉ gọi tập trung ở service
 		
+	* 	Tác dụng của nó là gì? 
+	* 	Cách triển khai nó ra sao? 
+	* 	Nguyên tắc SOLID 
+		Single responsibility principle: Mỗi class chỉ nên giữ một trách nhiệm duy nhất (mô tả riêng lẻ giữa các tác vụ)
+		Open/closed principle: Open với extend và close với modify (
+		Liskov substitution principle: Các object của class con có thể thay thế class cha mà không làm thay đổi tính đúng đắn 
+		Interface segregation principle: Tách interface lớn thành nhiều interface nhỏ 
+		Dependency inversion principle: Giảm sự phụ thuộc giữa các module, module cấp cao không phụ thuộc module cấp thấp, phải cùng phụ thuộc vào abstraction. 
+	-----------------------------------------------------------------------------
+	Tạo .repository còn lại
+	Tầng ShopOnline.Service
+	+	Tạo class PostsService
+		 //Triển khai: Khai báo interface
+		public interface IPostService
+		{
+			void Add(Post post);
+
+			void Update(Post post);
+
+			void Delete(int id);
+
+			IEnumerable<Post> GetAll();
+
+			//Lấy all trang
+			IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
+
+			//Lấy ra 1 bản ghi
+			Post GetById(int id);
+
+			//Lấy ra theo tag
+			IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
+
+			void SaveChanges();
+		}
+		public class PostService : IPostService
+		{
+			//Các repository cần gọi 
+			IPostRepository _postRepository;
+			IUnitOfWork _unitOfWork;
+
+			public PostService(IPostRepository postRepository, IUnitOfWork unitOfWork)
+			{
+				this._postRepository = postRepository;
+				this._unitOfWork = unitOfWork;
+			}
+
+			public void Add(Post post)
+			{
+				_postRepository.Add(post);
+			}
+
+			public void Delete(int id)
+			{
+				_postRepository.Delete(id);
+			}
+
+			//Select được post và category
+			public IEnumerable<Post> GetAll()
+			{
+				return _postRepository.GetAll(new string[] { "PostCategory" });
+			}
+
+			public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
+			{
+				//TODO: Select all post by tag
+				return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+
+			}
+
+			public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
+			{
+				return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+			}
+
+			public Post GetById(int id)
+			{
+				return _postRepository.GetSingleById(id);
+			}
+
+			public void SaveChanges()
+			{
+				_unitOfWork.Commit();
+			}
+
+			public void Update(Post post)
+			{
+				_postRepository.Update(post);
+			}
+	
+	+ 	Edit trong IRepository
+			//Delete 1 record
+			void Delete(int id);
+	
+	+ 	Triển khai lại trong RepositoryBase
+			public virtual void Delete(int id)
+			{
+				var entity = dbSet.Find(id);
+				dbSet.Remove(entity);
+			}
+		
+	+ 	Edit models post
+		    public virtual IEnumerable<PostTag> PostTags { set; get; }
+
