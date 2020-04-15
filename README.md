@@ -399,7 +399,7 @@
 			Tách nhánh sang bài 6 
 	*	Dựng tầng data ở project ShopOnline.Data với việc sử dụng Repository, Unit Of Work và Factory 
 	*	Cách Migration project C# vào database SQL Server 
-	--------------------------------------------------------------------
+	----------------------------------------------------------------
 	
 	*	ShopOnline.Data: Hạ tầng
 		UnitOfWork: Đảm bảo có nhiều thao tác trên cùng 1 giao dịch, đảm bảo sự toàn vẹn giữa nhiều thao tác
@@ -973,3 +973,206 @@
 				_postRepository.Update(post);
 			}
 		}
+		
+#	Bài 10: Unit testing cho Repository và service 
+	*	Nội dung bài học 
+			Giới thiệu về Unit test 
+			Lợi ích của việc sử dụng Unit test 
+			Cách tạo Test Project và viết Unit Test method 
+			
+	*	Giới thiệu về Unit Test 
+		+	Là một kỹ thuật quan trọng (UT) giúp nâng cao chất lượng phần mềm ngay từ những dòng code và chức năng nhỏ nhất được làm bởi chính dev. 
+		+	Kiểm thử những đơn vị code nhỏ nhất như phương thức hay class. 
+		+	Mỗi test case sẽ có một giá trị trả về thực tế và giá trị mong đợi, case được pass khi hai giá trị bằng nhau. 
+		+	Đối với một số chức năng chúng ta cần dùng đối tượng ảo để test gọi là  Mock Object. 
+		+	Trong phát triển phần mềm hiện đại có mô hình TDD (Test driven development) 
+		+	Tromg Visual Studio có sẵn thư viện gọi là MS Unit Test, ngoài ra một thư viện nổi tiếng khác là Nunit. 
+	*	Lợi ích của việc sử dụng Unit Test 
+			Kiểm thử phần mềm ngay từ những đơn vị nhỏ có thể loại bỏ được các lỗi tiềm tàng của hệ thống. 
+			Giảm thời gian phát triển và fix lỗi khi làm việc vì loại bỏ tối đa được các lỗi không đáng có.
+			Có thể sử dụng lại test case đã viết và phục vục ho việc test lại các chức năng sau khi sửa lại có còn đúng đắn mà không mất công test lại nhiều. 
+	----------------------------------------------------------------
+	ShopOnline.UnitTest
+		Install nuget moq,EF
+		Copy chuỗi connectionString từ ShopOnline.Data -> ShopOnline.unitTesst
+		
+	- 	Tạo 2 thư mục ServiceTest & RepositoryTest
+		RepositoryTest
+		+ Tạo class PostCategoryRepositoryTest
+			[TestClass]
+			public class PostCategoryRepositoryTest
+			{
+				IDbFactory dbFactory;
+				IPostCategoryRepository objRepository;
+				IUnitOfWork unitOfWork;
+
+				//Initialize: Chạy đầu tiên để thiết lập tham số: Chạy xong sẽ tạo ra 3 đối tượng
+				[TestInitialize]
+				public void Initialize()
+				{
+					dbFactory = new DbFactory();
+
+					//Truyền vào DBfactory
+					objRepository = new PostCategoryRepository(dbFactory);
+					unitOfWork = new UnitOfWork(dbFactory);
+				}
+
+				[TestMethod]
+				public void PostCategory_Repository_GetAll()
+				{
+					var list = objRepository.GetAll().ToList();
+					Assert.AreEqual(3, list.Count);
+				}
+
+				[TestMethod]
+				public void PostCategory_Repository_Create()
+				{
+					PostCategory category = new PostCategory();
+
+					//Gán cho các trường not null
+					category.Name = "Test category";
+					category.Alias = "Test-category";
+					category.Status = true;
+
+					var result = objRepository.Add(category);
+					unitOfWork.Commit();
+
+					//Assert: Giá trị muốn so sánh giữa 2 đối tượng 
+					Assert.IsNotNull(result);
+					Assert.AreEqual(3, result.ID);
+				}
+
+			}
+			
+		+ Edit class IPostRepository :
+			T Add(T entity);
+			T Delete(T entity);
+			T Delete(int id);
+			
+			IEnumerable<T> GetAll(string[] includes = null);
+			IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null);
+			IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> filter, out int total, int index = 0, int size = 50, string[] includes = null);
+		
+		+ Edit RepositoryBase:
+	
+			public virtual T Add(T entity)
+			{
+				dbSet.Add(entity);
+				return dbSet.Add(entity);
+			}
+
+			public virtual T Delete(T entity)
+			{				
+				return dbSet.Remove(entity);
+			}
+			
+			public virtual T Delete(int id)
+			{
+				var entity = dbSet.Find(id);
+				
+				return dbSet.Remove(entity);
+			}
+			
+			
+			public IEnumerable<T> GetAll(string[] includes = null)
+			
+			public T GetSingleByCondition(Expression<Func<T, bool>> expression, string[] includes = null)
+			{				
+				if (includes != null && includes.Count() > 0)
+				{
+					var query = dataContext.Set<T>().Include(includes.First());
+					foreach (var include in includes.Skip(1))
+						query = query.Include(include);
+					return query.FirstOrDefault(expression);
+				}
+				return dataContext.Set<T>().FirstOrDefault(expression);
+			}
+			
+			 
+			public virtual IEnumerable<T> GetMulti(Expression<Func<T, bool>> predicate, string[] includes = null)
+			
+			
+			public virtual IEnumerable<T> GetMultiPaging(Expression<Func<T, bool>> predicate, out int total, int index = 0, int size = 20, string[] includes = null)
+	
+	
+		+ Tạo class PostCategoryServiceTest
+			[TestClass]
+			public class PostCategoryServiceTest
+			{
+				//Tạo đ/tượng giả
+				private Mock<IPostCategoryRepository> _mockRepository;
+				private Mock<IUnitOfWork> _mockUnitOfWork;
+				private IPostCategoryService _categoryService;
+				private List<PostCategory> _listCategory;
+
+				[TestInitialize]
+				public void Initialize()
+				{
+					_mockRepository = new Mock<IPostCategoryRepository>();
+					_mockUnitOfWork = new Mock<IUnitOfWork>();
+					_categoryService = new PostCategoryService(_mockRepository.Object, _mockUnitOfWork.Object);
+					_listCategory = new List<PostCategory>()
+					{
+						new PostCategory() {ID =1 ,Name="DM1",Status=true },
+						new PostCategory() {ID =2 ,Name="DM2",Status=true },
+						new PostCategory() {ID =3 ,Name="DM3",Status=true },
+					};
+				}
+
+				[TestMethod]
+				public void PostCategory_Service_GetAll()
+				{
+					//setup method
+					_mockRepository.Setup(m => m.GetAll(null)).Returns(_listCategory);
+
+					//call action
+					var result = _categoryService.GetAll() as List<PostCategory>;
+
+					//compare
+					Assert.IsNotNull(result);
+					Assert.AreEqual(3, result.Count);
+				}
+
+				[TestMethod]
+				public void PostCategory_Service_Create()
+				{
+					PostCategory category = new PostCategory();
+					int id = 1;
+					category.Name = "Test";
+					category.Alias = "test";
+					category.Status = true;
+
+					_mockRepository.Setup(m => m.Add(category)).Returns((PostCategory p) =>
+					{
+						p.ID = 1;
+						return p;
+					});
+
+					var result = _categoryService.Add(category);
+
+					Assert.IsNotNull(result);
+					Assert.AreEqual(1, result.ID);
+				}
+			}
+				
+		+ Thêm connectionString trong appconfig
+			 <connectionStrings>
+			<clear/>
+			<add name="ShopOnlineConnection"  providerName="System.Data.SqlClient" connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=ShopOnline;Integrated Security=True; MultipleActiveResultSets=True"/>
+			</connectionStrings>
+		
+	ShopOnline.Service
+		+ Edit PostCategoryService
+			PostCategory Add(PostCategory postCategory);
+			PostCategory Delete(int id);
+			
+			public PostCategory Add(PostCategory postCategory)
+			{				
+				return _postCategoryRepository.Add(postCategory);
+			}
+			
+			public PostCategory Delete(int id)
+			{				
+			   return _postCategoryRepository.Delete(id);
+			}
+			
