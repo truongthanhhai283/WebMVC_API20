@@ -1280,3 +1280,17 @@
 		
 		- ApiControllerBase: Viết các phương thức chung
 		- Edit trong postCategoryServices
+		
+#	Bài 13: Áp dụng Dependency Injection vào dự án sử dụng thư viện Autofac. 
+		Các bước thực hiện cài đặt DI Autofac 
+		Cài đặt các gói Autofac, Autofac.Mvc5, Autofac.WebApi2 
+		Tạo file Startup.cs để register 
+		Cài đăt gói Microsoft.Owin.Host.SystemWeb để chạy file Startup 
+		Register startup cả controller và API 
+		Chạy thử 
+	-----------------------------------------------------------------------
+	- 	install: autofac, autofac.mvc5, autofac.webapi2 
+	ShopOnline.Web
+		- 	App_Start
+			+ Tạo Owin Startup class Startup
+			
