@@ -1255,29 +1255,9 @@
 				Service RESTful hỗ trợ đầy đủ các thành phần HTTP: URI, request/response headers, caching, versioning, content formats 
 				Service cung cấp dữ liệu cho nhiều client khác nhau với băng thông giới hạn như: browser, mobile, tablet… 
 	-------------------------------------------------------------------------
-	Demo
+	
 	ShopOnline.Web:
-		- 	Tạo area Admin
-				+ Tạo webAPI -> TestController
-		- 	Tạo folder API
-
-#	Bài 12: Cách tổ chức ứng dụng Web 
-		- 	Tạo folder Assets
-		- 	Xóa favicon, item trong script, views(Trừ web.config), content, Areas
-		- 	Scripts folder -> Tạo 2 folder spa && plugins
-		-	Assets folder -> Tạo 2 folder admin && client
-		- 	Tạo folder Infrastructure: Chức class dùng chung cho website	
-			+ 	Tạo 2 folder Core & Extensions
-			+ 	folder Core -> tạo WebAPIController (ApiControllerBase): bất cứ container nào cũng đều kế thừa ApiControllerBase
-		- 	ApiControllerBase: Các phương thức dùng chung	
-		
-	- ShopOnline.Model.Models: Tạo class Error 
-	- ShopOnline.Data: Class shopOnlineDBContext : Add dbset
-	- migration db: 
-		add-migration AddErrorTable
-	- Tạo repository cho Error
-	- Tao service cho Error
-	
-	- ApiControllerBase: Viết các phương thức chung
-	- Edit trong postCategoryServices
-	
+		+ Tạo area Admin
+			+ Tạo webAPI -> TestController
+		+ Tạo folder API
+				
