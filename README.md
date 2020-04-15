@@ -1289,8 +1289,26 @@
 		Register startup cả controller và API 
 		Chạy thử 
 	-----------------------------------------------------------------------
-	- 	install: autofac, autofac.mvc5, autofac.webapi2 
+	- 	install: autofac, autofac.mvc5, autofac.webapi2, system.owin.host
 	ShopOnline.Web
 		- 	App_Start
 			+ Tạo Owin Startup class Startup
+
+#	Bài 14: Sử dùng AutoMapper để map đối tượng. 
+	Các bước thực hiện cài đặt DI Autofac 
+		1. Cài đặt thư viện AutoMapper từ Nuget. 
+		2. Thực hiện tạo các ViewModel tương ứng với Model 
+		3. Tạo file MapperConfiguration để cấu hình  
+		4. Tạo phần update từ viewmodel sang Model 
+		5. Thực hiện mapping. 
+	--------------------------------------------------------------
+	ShopOnline.Web
+		- Tạo foldel Mappings
+			+ Tạo class AutoMapperConfiguration
+		- Models: tạo các tầng viewmodel theo ShopOnline.Data.Models
+		- Edit trong global
+		- Infrastructure
+			Folder Extensions
+			+ Tạo class EntityExtensions
+		- Edit PostCategoryController
 			
