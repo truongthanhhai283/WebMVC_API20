@@ -1176,3 +1176,88 @@
 			   return _postCategoryRepository.Delete(id);
 			}
 			
+#	Bài 11: Triển khai Web API trên Web layer
+	Nội dung bài học 
+		Giới thiệu về Resfull API và WebAPI Các công nghệ sử dụng để tạo ra HTTP Service 
+		Giới thiệu về RESTful API 
+		Một RESTful API là một giao diện lập trình ứng dụng (Application Programming Interface) sử dụng giao thức HTTP để GET, POST, PUT và DELETE dữ liệu. REST viết tắt của Representational state tranfer (REST) được sử dụng bởi trình duyệt cho phép client có thể tương tác với server hoặc cloud service. REST là phi trạng thái, client-server, có thể cache, sử dụng đầy đủ các phương thức tách biệt ngoài GET, POST ra còn có PUT, DELETE.. 
+		
+		Giới thiệu về WebAPI 
+			Web API là API trên nền web (http) và ASP.NET Web API chính là framework giúp chúng ta tạo ra các api này. Web API là các service được xây dựng dựa trên http sử dụng mô hình lập trình convention như ASP.NET MVC 
+		Ưu điểm: 
+			Cấu hình hết sức đơn giản so với WCF 
+			Performance cao Hỗ trợ RESTful đầy đủ 
+			Hỗ trợ đầy đủ các thành phần MVC như: routing, controller, action result, filter, model binder, IoC container, dependency injection, unit test 
+			Open Source Có thể sử dụng cho hầu hết các loại ứng dụng từ Desktop đến Mobile. 
+		
+		Các công nghệ tạo ra HTTP Servi ce 
+			Web service (ASMX) W
+			CF service 
+			WCF REST service 
+			Web API service 
+		
+		Webservice 
+			Đây là công nghệ cũ nhất của .NET Framework 
+			Nó dựa trên SOAP (Simple Object Access protocol) dữ liệu trả về dạng XML 
+			Chỉ hỗ trợ giao thức HTTP 
+			Không phải Open Source nhưng có thể sử dụng được với bất cứ client nào hỗ trợ XML 
+			Chỉ có thể host trên IIS 
+			Ưu điểm: 
+				Code và Test đơn giản 
+				Nhược điểm: Chỉ hỗ trợ giao thức SOAP để truyền nhận dữ liệu nên performance không cao 
+				Không thể tạo ra service dạng REST hỗ trợ định dạng dữ liệu JSON 
+		 
+		WCF (.NET 3.0 trở lên) 
+			Cũng dựa trên SOAP và trả về dữ liệu dạng XML 
+			Phát triển dựa trên Web service và hỗ trợ thêm rất nhiều giao thức khác nhau như: TCP, HTTP, HTTPS, Named Pipes, MSMQ. 
+			Giống Web service không phải Open Source nhưng có thể sử dụng bởi các client hỗ trợ XML Có thể host được trong ứng dụng, trên IIS hoặc Windows Service 
+			Ưu điểm: 
+				Hỗ trợ nhiều giao thức với nhiều kiểu binding khác nhau đặc biệt là HTTPS 
+				Hỗ trợ nhiều định dạng dữ liệu XML, ATOM… 
+			
+			Nhược điểm: 
+				Cấu hình rất phức tạp và rối rắm, chắc chắn các lập trình viên mới dùng không thể cấu hình được nếu không sử dụng Configuration Tool & Google 
+				Kiến trúc rất phức tạp và cồng kềnh 
+		 
+		WCF REST (.NET 3.5 trở lên) 
+			Là bản nâng cấp đáng giá của WCF với việc trên .NET 3.5 Microsoft bổ sung webHttpBinding để hỗ trợ RESTful service 
+			Hỗ trợ 2 HTTP verb GET, POST để truyền nhận dữ liệu với 2 thuộc tính tương ứng là WebGet và WebInvoke 
+			Muốn sử dụng các HTTP verb khác như PUT, DELETE cần cấu hình thêm trên IIS Hỗ trợ các định dạng dữ liệu XML, ATOM, JSON 
+			Ưu điểm: 
+				Bổ sung hỗ trợ RESTful service với định dạng dữ liệu JSON nhẹ hơn SOAP với dữ liệu XML rất nhiều 
+				Cho phép cấu hình tham số WebGet qua URI sử dụng UriTemplate 
+			Nhược điểm: 
+				Chưa hoàn toàn phải là RESTful service, mới chỉ hỗ trợ mặc định GET, POST 
+				Cấu hình khó nhớ (cố hữu của WCF) 
+		 
+		Web API (.NET 4 trở lên) 
+			Đây là một framework mới giúp cho việc xây dựng các HTTP service rất đơn giản và nhanh chóng
+			Open Source và có thể được sử dụng bởi bất kì client nào hỗ trợ XML, JSON 
+			Hỗ trợ đầy đủ các thành phần HTTP: URI, request/response headers, caching, versioning, content formats 
+			Có thể host trong ứng dụng hoặc trên IIS 
+			Kiến trúc lý tưởng cho các thiết bị có băng thông giới hạn như smartphone, tablet 
+			Định dạng dữ liệu có thể là JSON, XML hoặc một kiểu dữ liệu bất kỳ 
+		
+		Web API (.NET 4 trở lên) 
+			Ưu điểm: 
+				Cấu hình hết sức đơn giản khi so với WCF 
+				Performance cao 
+				Hỗ trợ RESTful đầy đủ Hỗ trợ đầy đủ các thành phần MVC như: routing, controller, action result, filter, model binder, IoC container, dependency injection, unit test 
+				Open Source 
+			Nhược điểm: Còn rất mới nên chưa có nhiều đánh giá về nhược điểm của Web API 
+		 
+		Vậy tôi nên lựa chọn framework nào để phát triển HTTP Service? 
+			Web Service: Lựa chọn khi bạn chỉ cần xây dựng một service đơn giản 
+			WCF là lựa chọn số một khi xây dựng: 
+				Service cần hỗ trợ những ngữ cảnh đặc biệt như: message queue, duplex communication… 
+				Service sử dụng những kênh truyền dữ liệu ở tầng thấp cho nhanh như: TCP, Named Pipes, UDP… 
+			WCF Rest, Web API được sử dụng khi xây dựng: 
+				Service RESTful hỗ trợ đầy đủ các thành phần HTTP: URI, request/response headers, caching, versioning, content formats 
+				Service cung cấp dữ liệu cho nhiều client khác nhau với băng thông giới hạn như: browser, mobile, tablet… 
+	-------------------------------------------------------------------------
+	
+	ShopOnline.Web:
+		+ Tạo area Admin
+			+ Tạo webAPI -> TestController
+		+ Tạo folder API
+				
