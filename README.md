@@ -1422,5 +1422,34 @@
 	ShopOnline.Web
 		Tạo file bower.json & .bowerrc
 	
-				
+#	Phần 2: Frontend  - Bài 17: Cách sử dụng Controller và View trong AngularJS 
+		Nội dung bài học 
+			Khái niệm module và cách tạo một module 
+			Khái niệm controller và cách tạo một controller 
+			Cách register một controller với một module 
+			Cách sử dụng module trong ứng dụng. 
+			Chú ý: 
+				Chúng ta sẽ học lý thuyết từ bài 16-20 còn lại bài 21 sẽ bắt đầu đi vào dự án thật trong quá trình đó mình sẽ đan xen lý thuyết 
+				Bài 16 mình đã giới thiệu tổng quan Angular, các bạn có thể tìm thêm các tài nguyên học tập và đọc thêm lý thuyết trên mạng hoặc trang http://angularjs.org 
+				Trong quá trình làm dự án mình sẽ hoàn thành các API còn lại khi cần. 
+	Khái niệm Module và Controller 
+	Module là gì? 
+		Một module là một container cho các thành phần khác nhau của ứng dụng như filters, controllers, services, directives... 
+		Bạn tưởng tượng  một module như một hàm Main của các loai ứng dụng khác. 
+		Cách tạo một module 
+		Sử dụng phương thức module() của đối tượng angular để tạo một module 
+	 
+	Controller là gì? 
+		Trong angular thì controller là một hàm JavaScript. Tác dụng của nó là xây dựng lên model để cho view hiển thị. 
+		Cách tạo một controller 
 	
+	Lỗi thường gặp  
+		Điều gì sảy ra nếu tên controller trong view bị sai? Xuất hiện 1 lỗi và bạn xem bằng Developer Tool  Console Expression trong view sẽ không thể hiển thị 
+		Nếu bạn đang dùng bản min của Angular bạn không thể đọc lỗi trực tiếp mà phải click vào link lỗi để chuyển đến trang đọc lỗi của angular 
+		Cách khác là bạn nên dùng bản không phải min trên môi trường develop. 
+		Khi tên thuộc tính trong view bị sai? 
+		Không nhận được lỗi nào vì tên biến bị undefined. 
+	-------------------------------------------------------------------------
+	ng-app: Khởi tạo module
+		
+ 

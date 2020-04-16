@@ -4,16 +4,18 @@
 }
 
 <!DOCTYPE html>
-
-<html ng-app>
+@* ng-app khởi tạo module không có tên *@
+<html ng-app="myModule">
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Index</title>
     <script src="~/Scripts/plugins/angular/angular.js"></script>
+    <script src="~/Scripts/spa/app.js"></script>
 </head>
 <body>
-    <div>
-        10 + 20 = {{10+20}}
+    @* Đọc biến trong controller *@
+    <div ng-controller="myController">
+        {{message}}
     </div>
 </body>
 </html>
