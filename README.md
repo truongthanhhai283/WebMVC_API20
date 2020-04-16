@@ -1451,5 +1451,35 @@
 		Không nhận được lỗi nào vì tên biến bị undefined. 
 	-------------------------------------------------------------------------
 	ng-app: Khởi tạo module
+
+#	Bài 18: Tìm hiểu về biến $scope và $rootScope trong AngularJS 
+	Nội dung bài học 
+		Khái niệm Scope 
+		Phạm vi ảnh hưởng của biến Scope 
+		Tìm hiểu về rootScope 
+		Scope lồng nhau 
+	
+	Khái niệm Scope 
+		$scope là một đối tượng có nhiệm vụ giao tiếp dữ liệu giữa controller và view. Scope chứa thông tin là các dữ liệu model, bao gồm các thuộc tính và phương thức. Trong controller, dữ liệu model có thể được truy cập qua đối tượng $scope. 
+		Bản chất: Chúng ta hiểu rằng ứng dụng AngularJS bao gồm: 
+			1. View - lớp code HTML. 
+			2. Model - là dữ liệu ứng dụng trên View. 
+			3. Controller - là các hàm javascript có khả năng tạo/thay đổi/xóa/điều khiển dữ liệu. 
+	
+	Phạm vi của biến Scope 
+		Trong một ứng dụng có thể có nhiều Controller và nhiều $scope khác nhau Khi một controller được sử dụng ngoài view, angular sẽ tạo một thể hiện của 1 controller đồng thời cũng tạo một biến scope cho controller đó. 
+		Ví dụ 
+	
+	Tìm hiểu về rootScope 
+		Biến rootScope là một biến tổng quát bao hàm toàn bộ các controller của ứng dụng. 
+		Tất cả các ứng dụng đều có một $rootScope, nó được tạo khi khai báo một phần tử HTML có thuộc tính là ng-app. 
 		
- 
+	Scope lồng nhau 
+		Trong AngularJS hỗ trợ các controller lồng nhau nên cũng sẽ có scope lồng nhau 
+		Biến được khai báo ở scope của controller bên ngoài cũng sẽ được gán cho biến cùng tên ở scope của controller bên trong. 
+		Tuy nhiên giá trị của biến ở controller bên trong hoàn toàn có thể ghi đè của controller bên ngoài. 
+		Khi thực thi sẽ thực thi controller bên ngoài trước. 
+	------------------------------------------------------------
+	rootScope: Biến toàn cục
+	scope lồng nhau: scope bao đóng sẽ được thực thi nếu không gán values nào: Kế thừa
+		

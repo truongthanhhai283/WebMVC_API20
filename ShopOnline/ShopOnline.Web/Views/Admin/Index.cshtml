@@ -14,7 +14,15 @@
 </head>
 <body>
     @* Đọc biến trong controller *@
-    <div ng-controller="myController">
+    <div ng-controller="schoolController">
+        <div ng-controller="teacherController">
+            in student {{message}}
+        </div>
+
+        <div ng-controller="studentController">
+            in teacher{{message}}
+        </div>
+
         {{message}}
     </div>
 </body>
