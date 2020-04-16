@@ -8,6 +8,19 @@
 	3. Unable to determine composite primary key ordering for type: 2 key trong 1 bảng
 		fix [Column(Order =1)]/[Column(Order =2)]
 		
+	4. One or more validation errors were detected during model generation:
+	ShopOnline.Data.IdentityUserRole: : EntityType 'IdentityUserRole' has no key defined. Define the key for this EntityType.
+	ShopOnline.Data.IdentityUserLogin: : EntityType 'IdentityUserLogin' has no key defined. Define the key for this EntityType.
+	IdentityUserRoles: EntityType: EntitySet 'IdentityUserRoles' is based on type 'IdentityUserRole' that has no keys defined.
+	IdentityUserLogins: EntityType: EntitySet 'IdentityUserLogins' is based on type 'IdentityUserLogin' that has no keys defined.
+	
+		fix: Cấu hình trong dbContext	
+		protected override void OnModelCreating(DbModelBuilder builder)
+        {
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
+        }
+		
 #	Bài 1: Giới thiệu tổng quan về dự án và công nghệ sử dụng 
 	*	Đây là một dự án website bán hàng trực tuyến có các chức năng sau:  
 			Admin quản trị sản phẩm, đơn hàng và tin bài  
@@ -1311,4 +1324,67 @@
 			Folder Extensions
 			+ Tạo class EntityExtensions
 		- Edit PostCategoryController
+
+#	Bài 15: Tích hợp ASP.NET Identity để chứng thực người dùng (login, logout)
+	ASP.NET Identity 
+		Là một cơ chế xác thực và quản lý người dùng mới nhất của Microsoft dành cho ứng dụng ASP.NET. 
+		Tiền thân của ASP.NET Identity là ASP.NET Membership sau khi ra đời đã có nhiều điểm yếu. ASP.NET Identiy đã khắc phục và ra mắt với nhiều tính năng mạnh mẽ. 
+		Được ra mắt lần đầu trong Project Template của Visual 2013 
+	Cách đặc điểm 
+		 Là cơ chế dùng chung cho tất cả các ứng dụng Web bao gồm ASP.NET MVC, Web API, WebForm và SignalR
+		 Dễ dàng thêm mới các trường dữ liệu khác vào user 
+		 Dễ dàng Unit test 
+		 Quản lý quyền 
+		 Hỗ trợ login với các Social dễ dàng 
+		 Độc lập với Web vì sử dụng cơ chế OWIN 
+		 Cài đặt dễ dàng từ Nuget 
+	Các bước thực hiện cài đặt DI Autofac 
+		1. Cài đặt 3 thư viện 
+			1. Microsoft.AspNet.Identity.EntityFramework 
+			2. Microsoft.AspNet.Identity.Core  
+			3. Microsoft.AspNet.Identity.OWIN 
+		2. Tạo mới class User kế thừa từ IdentityUser 
+		3. Tạo mới Role kế thừa từ IdentityRole 
+		4. Kế thừa lớp DbContext từ dentityDbContext<User> 
+		5. Cấu hình authentication từ file Startup.cs 
+		6. Thực hiện Migration vào database 
+		7. Tạo class quản lý authen Microsoft
+	--------------------------------------------------------------
+	ShopOnline.Web, ShopOnline.Model
+		1. Microsoft.AspNet.Identity.EntityFramework 
+		2. Microsoft.AspNet.Identity.Core  
+		3. Microsoft.AspNet.Identity.OWIN 
+		
+	ShopOnline.Data.Models
+		tao class ApplicationUser
+		
+	ShopOnline.Data
+		Edit ShopOnlineDbContext
+	 
+	ShopOnline.Web
+		Tao class IdentityConfig
+		Tao class Startup.Auth
+		
+	Package console manager
+		add-migration Intergrate.Asp.netIdentity
+	
+	Edit ShopOnlineDbContext
+		protected override void OnModelCreating(DbModelBuilder builder)
+        {
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
+        }
+	
+	ShopOnline.Web
+		Edit startup
+			 ConfigureAuth(app);
 			
+		Tạo api AccountController
+		
+	ShopOnline.Data.Migration.MigrationClass
+		Edit MigrationClass
+		
+		update-database
+			
+		
+	
