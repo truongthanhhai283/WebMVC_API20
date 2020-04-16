@@ -1,28 +1,30 @@
 ﻿/// <reference path="../plugins/angular/angular.js" />
 
-//Khởi tạo module
-var myapp = angular.module("myModule", []);
+var myApp = angular.module('myModule', []);
 
-//Gọi controller
-myapp.controller("teacherController", teacherController);
-myapp.controller("studentController", studentController);
-myapp.controller("schoolController", schoolController);
+myApp.controller("schoolController", schoolController);
+myApp.service('Validator', Validator);
 
-myController.$inject = [$scope]
+schoolController.$inject = ['$scope', 'Validator'];
 
-//Khai báo controller
-function myController($scope) {
-    $scope.message = "This's my message from Controller";
+function schoolController($scope, Validator) {
+
+    $scope.checkNumber = function () {
+        $scope.message = Validator.checkNumber($scope.num);
+    }
+    $scope.num = 1;
 }
 
-function teacherController($scope) {
-    $scope.message = "This's my message from teacherController";
-}
+function Validator($window) {
+    return {
+        checkNumber: checkNumber
+    }
+    function checkNumber(input) {
+        if (input % 2 == 0) {
+            return 'This is even';
+        }
+        else
+            return 'This is odd';
+    }
 
-function studentController($scope) {
-    $scope.message = "This's my message from studentController";
-}
-
-function schoolController($scope) {
-    $scope.message = "Announcement from school";
 }

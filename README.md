@@ -1482,4 +1482,29 @@
 	------------------------------------------------------------
 	rootScope: Biến toàn cục
 	scope lồng nhau: scope bao đóng sẽ được thực thi nếu không gán values nào: Kế thừa
+
+#	Bai 19 Cach su dung directive trong AngularJS 1
+	Nội dung bài học 
+		Service trong AngularJS Khái niệm 
+		Các loại service có sẵn 
+		Cách tạo mới 1 custom service 
+	
+	Khái niệm Service là gì? 
+		Service nói chung là những hàm được tập hợp lại để xử lý một tác vụ nào đó có thể là dùng chung hoặc dùng riêng, trong ASP.NET có Web API, Web Service... 
+		Trong AngularJS có nhiều các service được xây dựng sẵn giúp xây dựng hệ thống, nhưng chúng ta cũng có thể tự định nghĩa thêm các service theo nhu cầu của riêng dự án. 
 		
+	Một số service sẵn có của AngularJS 
+		$anchorScroll 	$animate 			$cacheFactory 	$compile 		$controller 
+		$document 		$exceptionHandler 	$filter 		$http 			$httpBackend 		
+		$interval 		$locale 			$location 		$log 			$parse 		
+		$rootElement 	$rootScope 			$sce 			$sceDelegate 	$q 	
+		$templateCache 	$templateRequest 	$timeout 		$window 		$interpolate 
+	
+	Service tự định nghĩa 
+		Có hai cách để định nghĩa một service: 
+		Sử dụng Factory method 
+		Sử dụng Service method 
+		Cú pháp khai báo service: 
+	-------------------------------------------------------------------------
+	Khai báo service
+ 

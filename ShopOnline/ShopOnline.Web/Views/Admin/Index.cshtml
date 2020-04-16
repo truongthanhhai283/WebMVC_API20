@@ -13,16 +13,11 @@
     <script src="~/Scripts/spa/app.js"></script>
 </head>
 <body>
-    @* Đọc biến trong controller *@
     <div ng-controller="schoolController">
-        <div ng-controller="teacherController">
-            in student {{message}}
-        </div>
+        <input type="number" ng-model="num" /> Value of textbox: {{num}}
+        <button ng-click="checkNumber()">Check number</button>
 
-        <div ng-controller="studentController">
-            in teacher{{message}}
-        </div>
-
+        <br />
         {{message}}
     </div>
 </body>
