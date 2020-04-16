@@ -1385,6 +1385,42 @@
 		Edit MigrationClass
 		
 		update-database
-			
 		
+#	Bài 16: Giới thiệu tổng quan về AngularJS và cài đặt với Browser
+		Khái niệm 
+			AngularJS là một JavaScript Framework mạnh mẽ được phát triển bởi Google giúp xây dựng một ứng dụng web SPA hoàn chỉnh. 
+			Được phát triển từ năm 2009 và phiên bản 1.0 ra đời tháng 6 năm 2012 
+			Thời điểm hiện tại là version 1.5.5, đã có angular 2 beta. 
+			Web site: https://angularjs.org 
+		Nguồn học tập: 
+			https://docs.angularjs.org/guide/concepts 
+			http://www.w3schools.com/angular/angular_intro.asp 
+			 
+	 
+		So sánh với JQuery 
+			Jquery là một thư viện chứa các phương thức giúp bạn duyệt qua DOM,thao tác với các phần tử DOM, bắt sự kiện hay tạo hiệu ứng... AngularJS là một framework hoàn chỉnh dùng để xây dựng ứng dụng Web. Jquery làm việc với tư duy selector DOM ra đối tượng rồi thao tác, sau đó gán ngược trở lại DOM AngularJS với tư duy mở rộng các cú pháp HTML, các thẻ, các thuộc tính để thao tác hướng đến native HTML. 
+			Các thành phần của AngularJS 
+		
+		Giải thích các khái niệm 
+			Data-binding – Đó là tự động đồng bộ dữ liệu giữa model và view. Scope – Đây là đối tượng có khả năng truy cập các model. Scope như một chất keo giữa controller và view, nó giúp controller và view có thể liên kết với nhau. Controller – Đây là những chức năng Javascript được liên kết với một view cụ thể. Services – AngularJS đi kèm với một số dịch vụ được xây dựng ví dụ: $http để thực hiện một XMLHttpRequests. Đây là những đối tượng singleton mà được khởi tạo một lần duy nhất trong ứng dụng. Filters – Filters giống như một bộ lọc, format lại dữ liệu gốc sau đó hiển thị ra ngoài view người dùng. Directives – Cho phép mở rộng HTML theo ý của bạn và bạn có thể tùy chỉnh lại các thuộc tính, phần tử, … (elements,) Templates – Là một file xây dựng bằng html. Nó được gọi từ thông tin của controller và model. Templates có thể là một file giống như index.html hoặc là nhiều file khác nhau sửa dụng cho một page , chúng ta vẫn thường gọi là “partials”. 
+		 
+		Giải thích các khái niệm (tiếp) 
+			Routing – Quá quen thuộc rồi phải không. Routing giúp chuyển đổi giữa các view hoặc luồng xử lý trong project của bạn. Model View Whatever − MVC – là một mẫu thiết kế để phân chia ứng dụng ra thành các phần khác nhau (gọi là Model, View và Controller), đều có trách nhiệm riêng biệt. AngularJS không thực hiện MVC trong ý nghĩa truyền thống, mà là một cái gì đó gần gũi hơn với MVVM (Model-View-View-Model). AngularJS đề cập nó với một cách hài hước là Model View Whatever. Deep Linking – Liên kết sâu, cho phép bạn mã hóa trạng thái của ứng dụng  trong các URL  để nó có thể đánh dấu được với công cụ tìm kiếm như google,Bing, … Giúp ứng dụng của bạn tốt hơn cho SEO. Dependency Injection – Dependency Injection trong Angular giúp các nhà phát triển tạo ứng dụng  dễ dàng hơn để phát triển và thử nghiệm dễ dàng. 
+		 
+		Ưu và nhược điểm 
+		Ưu điểm 
+			AngularJS được phát triển bởi google, và là mã nguồn mở viết theo mô hình MVC. 
+			AngularJS cho phép tạo ra các ứng dụng một cách đơn giản, code sạch, dễ dàng hơn trong việc kiểm thử. Tương thích với hầu hết các trình duyệt trên các điện thoại thông minh. AngularJS sử dụng cơ chế data-binding từ là khi model thay đổi thì view cũng thay đổi và ngược lại. 
+		Nhược điểm 
+				Không an toàn: Được phát triển từ javascript nên nó không an toàn, phía máy chủ phải thường xuyên xác nhận quyền để hệ thống chạy trơn tru. 
+				Phụ thuộc: Nếu người dùng vô hiệu hóa javascript thì coi vứt đi. 
+		Download và cài đặt 
+			Để download bạn lên trang chủ AngularJS bấm vào nút mầu xanh để download file angulajs.min.js phiên bản mới nhất về (đây chính là bộ thư viện của AngularJS) và include vào phần header: <script src="/js/angularjs.min.js"></script> Hoặc bạn cũng có thể copy CDN sau khi bấm vào download từ trang chủ và gọi: <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script> 
+	---------------------------------------------------------------------------------------
+		Download và cài đặt
+			angulajs.org
+	ShopOnline.Web
+		Tạo file bower.json & .bowerrc
+	
+				
 	
