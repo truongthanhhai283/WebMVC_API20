@@ -1507,4 +1507,26 @@
 		Cú pháp khai báo service: 
 	-------------------------------------------------------------------------
 	Khai báo service
- 
+	
+#	Bài 20: Directives trong AngularJS 
+	Khái niệm Directive 
+		Directive là một thành phân tính năng của AngularJS, nó giúp xây dựng các thẻ mở rộng của cho HTML nhằm một mục đích nào đó. 
+		Các directive của Angular thường có tiền tố là ng-directive.
+	
+	Các directive chính  
+		Trong AngularJS, chúng ta khai báo directive với tiếp đầu ng-, có 3 directive chính: 
+		ng-app: khởi tạo ứng dụng AngularJS. ng-init: khởi tạo dữ liệu ứng dụng giống constructor trong OOP. 
+		ng-model: gắn kết dữ liệu ứng dụng với các đối tượng HTML(input, select, textarea). 
+	
+	Tự định nghĩa một custom directive 
+		Ngoài các Directive mà AngularJS hỗ trợ sẵn, chúng ta có thể tao mới Directive sử dụng hàm .directive(). Khai báo một directive phải tạo một thẻ HTML có tên giống với tên của directive chúng ta cần tạo. 
+		Tên của thẻ phải phân tách bằng dấu "-", chẳng hạn là tedu-directive. Nhưng tên directive mới sẽ bỏ dấu "-" và viết hoa chữ đầu của mỗi từ, như vậy tên đúng là teduDirective Cách định nghĩa custom directive: 
+	Hạn chế truy cập cho Directive 
+		Chúng ta có thể giới hạn chỉ một số phương thức nào đó được gọi directive. Chẳng hạn chúng ta hạn chế chỉ thuộc tính(attribute) có thể gọi directive Lưu ý: Các giá trị định nghĩa để hạn chế đối với các thành phần như sau: 
+		restrict: "E" - cho Element 
+		restrict: "A" - "A" cho Attribute 
+		restrict: "C" - "C" cho Class 
+		restrict: "M" - "M" cho Comment
+		Mặc định, giá trị "EA" sẽ hạn chế cho cả Element và Attribute 
+	--------------------------------------------------------------
+	

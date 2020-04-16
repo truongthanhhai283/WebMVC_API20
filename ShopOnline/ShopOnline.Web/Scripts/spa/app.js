@@ -5,6 +5,9 @@ var myApp = angular.module('myModule', []);
 myApp.controller("schoolController", schoolController);
 myApp.service('Validator', Validator);
 
+myApp.directive("shopOnlineDirective", shopOnlineDirective);
+
+
 schoolController.$inject = ['$scope', 'Validator'];
 
 function schoolController($scope, Validator) {
@@ -27,4 +30,14 @@ function Validator($window) {
             return 'This is odd';
     }
 
+}
+
+function shopOnlineDirective() {
+    return {
+        //template: "<h1>This is my first custom directive </h1>",
+
+        //gioi han pham vi hoat dong "A": attribute
+        restrict:"A",
+        templateUrl: "/Scripts/spa/ShopOnlineDirective.html"
+    }
 }
