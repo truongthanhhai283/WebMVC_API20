@@ -1529,4 +1529,50 @@
 		restrict: "M" - "M" cho Comment
 		Mặc định, giá trị "EA" sẽ hạn chế cho cả Element và Attribute 
 	--------------------------------------------------------------
+
+#	Bài 21: Dựng cấu trúc cho SPA(Single Part Application) sử dụng AngularJS 
+	Ý tưởng? 
+		Đầu tư vào thiết kế với best practices sẽ lâu hơn lúc đầu nhưng sau này dự án lớn lên sẽ dễ dàng hơn nhiều. 
+		Làm sao để khi có nhiều module thì ứng dụng dễ dàng tìm kiếm và quản lý source code 
+	Cấu trúc cơ bản 
+	Phân loại theo từng loại, controllers, directives, views. 
+	Ưu điểm: 
+		Dễ nhìn 
+		Gần với mô hình MVC 
+	Nhược điểm: 
+		Phù hợp ứng dụng nhỏ 
+		Khi có nhiều view hay controller sẽ khó tìm 
+	
+	Mục tiêu đạt được 
+		Có khả năng sửa chữa nhanh chóng và dễ dàng
+		Có thể mở rộng 
+		Dễ dàng debug 
+		Dễ dàng testing 
+	Các best practices 
+		Tách header, footer ra thành module riêng 
+		Tách phần routing ra thành file riêng 
+		Viết code để có thể minify code 
+		Đặt tên thống nhất ví dụ: blogView.html, blogServices.js, blogController.js. 
+	-----------------------------------------------------------------------------
+	ShopOnline.Web
+	+ 	Tạo folder app
+	+	Xóa folder script
+	+	Foldel app:
+		Tạo folder shared & components folder
+	+ 	Assets/Admin folder:
+		Tạo folder css, js, libs, img
+	+	app/components
+		Tạo folder users, products, product_categories, oders, roles
+	+	Edit bowerrc url
+	+	app/shared
+		Tạo folder directive, footer, navigation
+	+	app	
+		Tạo file app.js, app.routes.js
+	+	app/components/products
+		Tạo 3 file html: productListView - productEditView - productAddView
+		Tạo 3 file controller.js tương ứng: productListController - productEditController - productAddController
+		tạo .routes.js để tách thành module (các module khác cũng như vậy)
+	+	shared folder
+		Tạo folder servies
+		
 	
