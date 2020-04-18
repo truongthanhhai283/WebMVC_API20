@@ -1,15 +1,13 @@
 ﻿using AutoMapper;
-using ShopOnline.Model.Models;
-using ShopOnline.Service;
-using ShopOnline.Web.Infrastructure.Core;
-using ShopOnline.Web.Infrastructure.Extensions;
-using ShopOnline.Web.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ShopOnline.Model.Models;
+using ShopOnline.Service;
+using ShopOnline.Web.Infrastructure.Core;
+using ShopOnline.Web.Models;
+using ShopOnline.Web.Infrastructure.Extensions;
 
 namespace ShopOnline.Web.Api
 {

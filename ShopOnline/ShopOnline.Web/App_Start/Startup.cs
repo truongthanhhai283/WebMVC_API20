@@ -1,21 +1,22 @@
 ﻿using System;
-using System.Reflection;
 using System.Threading.Tasks;
-using System.Web;
-using System.Web.Http;
-using System.Web.Mvc;
-using Autofac;
-using Autofac.Integration.Mvc;
-using Autofac.Integration.WebApi;
-using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
-using Microsoft.Owin.Security.DataProtection;
 using Owin;
-using ShopOnline.Data;
+using Autofac;
+using System.Reflection;
 using ShopOnline.Data.Infrastructure;
 using ShopOnline.Data.Repositories;
-using ShopOnline.Model.Models;
 using ShopOnline.Service;
+using System.Web.Mvc;
+using System.Web.Http;
+using Autofac.Integration.Mvc;
+using Autofac.Integration.WebApi;
+using ShopOnline.Data;
+using Microsoft.AspNet.Identity;
+using ShopOnline.Model.Models;
+using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataProtection;
+using System.Web;
 
 [assembly: OwinStartup(typeof(ShopOnline.Web.App_Start.Startup))]
 

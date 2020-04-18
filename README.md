@@ -1574,5 +1574,28 @@
 		tạo .routes.js để tách thành module (các module khác cũng như vậy)
 	+	shared folder
 		Tạo folder servies
+
+#	Bài 22: Triển khai routing cho sử dụng Angular UI Router 
+	Giới thiệu vể Router 
+		Router là một cơ chế rất quan trọng trong ứng dụng SPA. 
+		Nó độc lập với cơ chế điều hướng của ASP.NET MVC 
+		Nó tự động sử dụng view tương ứng với URL 
+		Trong AngularJS: 
+			ngRoute: Là một module core của AngularJS giúp điều hướng trong các kịch bản đơn giản. 
+			Ui-router: Được phát triển bởi cộng đồng, khắc phục và thêm các tính năng mạnh mẽ cho ng-Route 
+	Tại sao nên sử dụng ui-router 
+		ui-router cho phép view lồng nhau. Điều này là rất hữu ích với ứng dụng lớn, nơi bạn có thể có các trang mà kế thừa từ các phần khác. 
+		ui-router cho phép bạn có kiểu liên kết mạnh mẽ giữa các state dựa trên tên của state. Thay đổi địa chỉ ở một nơi sẽ cập nhật tất cả các liên kết đến state mà khi bạn xây dựng các liên kết của bạn với ui-sref. Rất hữu dụng cho các dự án lớn, nơi các URL có thể thay đổi. 
+		tiểu bang cho phép bạn bản đồ và truy cập thông tin khác nhau về những trạng thái khác nhau và bạn có thể dễ dàng chuyển thông tin giữa các quốc gia thông qua $ stateParams. 
+	----------------------------------------------------------------------------
+	ShopOnline.Web
+	+	Edit .bowerrc
+	+	assets/admin/libs
+		copy & paste angular & angular-ui-router
+	+	Download template adminlte & extract
+	+	paste img, js, css vào assets folder
+	+	coppy paste index admin
+	+	copy & paste bootstrap, jquery, fastclick, slimScroll vào assets/admin/libs
+	+	edit bower.json
 		
-	
+		
