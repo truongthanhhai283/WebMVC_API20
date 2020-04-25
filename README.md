@@ -1598,4 +1598,9 @@
 	+	copy & paste bootstrap, jquery, fastclick, slimScroll vào assets/admin/libs
 	+	edit bower.json
 		
-		
+Bài 23: Đọc danh sách dữ liệu từ Web API bằng AngularJS 
+	Các bước xây dựng trang danh sách 
+	1. Tạo API danh sách cho product category 
+	2. Tạo service common cho việc call API 
+	3. Đọc web API trong Angular Controller 
+	4. Sử dụng directive ng-repeat để hiển thị dữ liệu 

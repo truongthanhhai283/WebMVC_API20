@@ -4,6 +4,7 @@
     using Microsoft.AspNet.Identity.EntityFramework;
     using ShopOnline.Model.Models;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -17,6 +18,7 @@
 
         protected override void Seed(ShopOnline.Data.ShopOnlineDbContext context)
         {
+            CreateProductCategorySample(context);
             //  This method will be called after migrating to the latest version.
 
             var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ShopOnlineDbContext()));
@@ -44,6 +46,23 @@
             var adminUser = manager.FindByEmail("truongthanhhai283@gmail.com");
 
             manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+
+        }
+
+        private void CreateProductCategorySample(ShopOnline.Data.ShopOnlineDbContext context)
+        {          
+            if (context.ProductCategories.Count() == 0)
+            {
+                List<ProductCategory> listProductCategory = new List<ProductCategory>()
+            {
+                new ProductCategory() { Name="Điện lạnh",Alias="dien-lanh",Status=true },
+                 new ProductCategory() { Name="Viễn thông",Alias="vien-thong",Status=true },
+                  new ProductCategory() { Name="Đồ gia dụng",Alias="do-gia-dung",Status=true },
+                   new ProductCategory() { Name="Mỹ phẩm",Alias="my-pham",Status=true }
+            };
+                context.ProductCategories.AddRange(listProductCategory);
+                context.SaveChanges();
+            }
 
         }
     }
