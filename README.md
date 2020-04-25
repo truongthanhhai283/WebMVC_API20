@@ -1598,9 +1598,37 @@
 	+	copy & paste bootstrap, jquery, fastclick, slimScroll vào assets/admin/libs
 	+	edit bower.json
 		
-Bài 23: Đọc danh sách dữ liệu từ Web API bằng AngularJS 
+#	Bài 23: Đọc danh sách dữ liệu từ Web API bằng AngularJS 
 	Các bước xây dựng trang danh sách 
 	1. Tạo API danh sách cho product category 
 	2. Tạo service common cho việc call API 
 	3. Đọc web API trong Angular Controller 
 	4. Sử dụng directive ng-repeat để hiển thị dữ liệu 
+	
+#	Bài 24: Định dạng dữ hiển thị sử dụng Filter trong AngularJS 
+	Nội dung bài học 
+		Khái niệm filter 
+		Các filter có sẵn 
+		Cách tự định nghĩa filter 
+	
+	Các filter thông dụng 
+		currency: định dạng số thành kiểu tiền tệ 
+		date: định dạng ngày tháng theo định dạng đã cho. 
+		filter: trả về tập con từ mảng dữ liệu. 
+		json: định dạng đối tượng thành JSON. 
+		limitTo: giới hạn một mảng/chuỗi thành một số phần tử/ký tự đã cho. 
+		lowercase: chuyển chuỗi sang chữ thường. 
+		number: chuyển số sang chữ. 
+		orderBy: sắp xếp mảng theo thứ tự. 
+		uppercase: chuyển chuỗi sang chữ hoa
+		
+	Cách sử dụng Filter 
+		Để sử dụng filter, chúng ta chỉ cần thêm filter đó vào biểu thức theo cú pháp như sau: 
+			{{myString | filter}} Ví dụ: <p>Tên đầy đủ {{ lastName | uppercase }}</p> hoặc  
+		Hoặc: <h1>Price: {{ price | currency }}</h1> 
+	 
+	Filter tự định nghĩa 
+		Ngoài các filter có sẵn trong angularjs chúng ta cũng có thể định nghĩa thêm các filter của riêng mình giống như directive, service. 
+	--------------------------------------------------------------
+		
+	SQL: update productCategories set CreatedDate = getdate()
