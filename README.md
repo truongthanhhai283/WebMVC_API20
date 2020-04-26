@@ -1685,4 +1685,19 @@
 	3. Tạo controller edit 
 	4. Validate dữ liệu đầu vào 
 	5. Binding sự kiện cập nhật
-	6. Thông báo cho người dùng 
+	6. Thông báo cho người dùng
+
+#	Bài 30: Validate form trong AngularJS 
+	Những điểm cần nhớ 
+	Property Class Description 
+		$valid ng-valid Boolean Tells whether an item is currently valid based on the rules you placed. 
+		$invalid ng-invalid Boolean Tells whether an item is currently invalid based on the rules you placed.
+		$pristine ng-pristine Boolean True if the form/input has not been used yet. 
+		$dirty ng-dirty Boolean True if the form/input has been used. 
+		$touched ng-touched Boolean True if the input has been blurred. 
+	Truy cập vào form 
+		Để truy cập vào form: <form name>.<angular property> 
+		Để truy cập vào input: <form name>.<input name>.<angular property> 
+	Một số điểm cần nhớ 
+		Thuộc tính novalidate cho form sẽ disable cơ chế validate mặc định của HTML, chúng ta sẽ dùng của AngularJS Áp dụng directive ng-model cho các input để liên kết với model Sử dụng ng-minlength và ng-maxlength để giới hạn độ dài ngắn nhất và dài nhất cho input Thuộc tính bắt buộc là required Nếu cần valid email chỉ cần cho type=“email” Các bạn có thể tham khảo thêm các thuộc tính tại: https://docs.angularjs.org/api/ng/directive/input 
+ 
