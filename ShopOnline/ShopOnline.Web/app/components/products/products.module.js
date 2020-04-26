@@ -1,6 +1,5 @@
 ﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
 
-//khai báo module products
 (function () {
     angular.module('shoponline.products', ['shoponline.common']).config(config);
 

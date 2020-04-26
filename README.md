@@ -1664,3 +1664,13 @@
 	5. Gọi notification thông báo mỗi khi cần 
 	-------------------------------------------------
 	https://codeseven.github.io/toastr/demo.html
+	
+#	Bài 28: Tạo form thêm mới dữ liệu 
+	Các bước thực hiện 
+		1. Tạo phương thức API thêm mới dữ liệu 
+		2. Tạo form thêm dữ liệu sử dụng bootstrap 
+		3. Valid dữ liệu đầu vào bằng AngularJS 
+		4. Tạo mới controller thêm mới 
+		5. Nhúng controller vào index 
+		6. Binding sự kiện 
+	---------------------------------------------------------

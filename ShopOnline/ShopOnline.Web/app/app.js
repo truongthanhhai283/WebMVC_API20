@@ -3,8 +3,8 @@
 (function () {
     angular.module('shoponline',
         ['shoponline.products',
-            'shoponline.product_categories',
-            'shoponline.common'])
+         'shoponline.product_categories',
+         'shoponline.common'])
         .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
