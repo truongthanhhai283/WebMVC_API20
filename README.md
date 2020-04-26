@@ -1674,3 +1674,15 @@
 		5. Nhúng controller vào index 
 		6. Binding sự kiện 
 	---------------------------------------------------------
+	
+#	Bài 29: Tạo form cập nhật dữ liệu thông qua method PUT 
+	Các bước thực hiện 
+	1. Backend 
+		1. Thêm API cập nhật dữ liệu 
+		2. Frontend 
+	1. Tạo form cập nhật dữ liệu và loading dữ liệu sẵn 
+	2. Tạo thêm phương thức cho apiService 
+	3. Tạo controller edit 
+	4. Validate dữ liệu đầu vào 
+	5. Binding sự kiện cập nhật
+	6. Thông báo cho người dùng 
