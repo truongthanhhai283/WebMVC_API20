@@ -1701,3 +1701,13 @@
 	Một số điểm cần nhớ 
 		Thuộc tính novalidate cho form sẽ disable cơ chế validate mặc định của HTML, chúng ta sẽ dùng của AngularJS Áp dụng directive ng-model cho các input để liên kết với model Sử dụng ng-minlength và ng-maxlength để giới hạn độ dài ngắn nhất và dài nhất cho input Thuộc tính bắt buộc là required Nếu cần valid email chỉ cần cho type=“email” Các bạn có thể tham khảo thêm các thuộc tính tại: https://docs.angularjs.org/api/ng/directive/input 
  
+#	Bài 31: Xóa dữ liệu với Confirm bootbox trong AngularJS 
+	
+	Các bước thực hiện 
+	1. Backend 
+		1. Thêm phương thức xóa cho API 
+	2. Frontend 	
+		1. Cài đặt bootbox và ngBootbox trên bower 
+		2. Sử dụng confirm của bootbox 
+		3. Gọi phương thức xóa 
+		4. Thông báo thành công 

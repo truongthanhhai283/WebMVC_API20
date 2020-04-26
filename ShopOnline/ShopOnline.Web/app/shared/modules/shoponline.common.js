@@ -1,6 +1,3 @@
-﻿
-//khai báo module shoponline
-(function () {
-    //tên module shoponline.common, reference ui.router
-    angular.module('shoponline.common', ['ui.router'])
+﻿(function () {
+    angular.module('shoponline.common', ['ui.router', 'ngBootbox'])
 })();
