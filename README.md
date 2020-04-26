@@ -1654,3 +1654,13 @@
 		1. Chỉnh sửa controller để thêm tham số 
 		2. Call lên hàm sử dụng binding sự kiện trong Angular 
 	
+#	Bài 27: Triển khai service thông báo cho người dùng 
+	Các bước thực hiện 
+ 
+	1. Sử dụng bower để cài đặt toastr 
+	2. Tạo custom service có tên là notificationService gắn vào module shoponline.common 
+	3. Nhúng service vào file index 
+	4. Inject vào controller cần dùng 
+	5. Gọi notification thông báo mỗi khi cần 
+	-------------------------------------------------
+	https://codeseven.github.io/toastr/demo.html
