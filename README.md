@@ -1644,3 +1644,13 @@
 		2. Áp dụng didrrective vào để phân trang 
 	-------------------------------------------------
 	
+#	Bài 26: Tìm kiếm dữ liệu với Angular 
+	Các bước thực hiện 
+	1. Backend 
+		1. Thêm một tham số filter keyword vào phương thức của API 
+		2. Test sử dụng Post man extension của Chrome 
+	
+	2. Frontend 
+		1. Chỉnh sửa controller để thêm tham số 
+		2. Call lên hàm sử dụng binding sự kiện trong Angular 
+	
