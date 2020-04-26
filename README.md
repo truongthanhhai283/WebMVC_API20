@@ -1632,3 +1632,15 @@
 	--------------------------------------------------------------
 		
 	SQL: update productCategories set CreatedDate = getdate()
+
+#	Bài 25: Phân trang danh sách dữ liệu sử dụng custom directive. 
+	Các bước thực hiện 
+	1. Backend 
+		1. Tạo class generic chứa thông tin paging trả về 
+		2. Áp dụng vào phân trang cho web API sử dụng LINQ Entity Framework 
+	
+	2. Frontend 
+		1. Viết mới một pager directive để phân trang 
+		2. Áp dụng didrrective vào để phân trang 
+	-------------------------------------------------
+	
