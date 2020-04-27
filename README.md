@@ -1711,3 +1711,12 @@
 		2. Sử dụng confirm của bootbox 
 		3. Gọi phương thức xóa 
 		4. Thông báo thành công 
+		
+#	Bài 32: Xóa nhiều bản ghi trong AngularJS 
+	Các bước thực hiện 
+	1. Backend 
+		1. Thêm phương thức xóa nhiều bản ghi cho API
+		2. Frontend 
+	1. Tạo checkbox cho mỗi dòng 
+	2. Sử dụng $watch để check sự tay đổi của các checkbox 
+	3. Submit các dòng đã check lên server để xóa 

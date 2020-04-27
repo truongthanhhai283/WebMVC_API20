@@ -10,6 +10,7 @@ using ShopOnline.Service;
 using ShopOnline.Web.Infrastructure.Core;
 using ShopOnline.Web.Models;
 using ShopOnline.Web.Infrastructure.Extensions;
+using System.Web.Script.Serialization;
 
 namespace ShopOnline.Web.Api
 {
@@ -166,6 +167,33 @@ namespace ShopOnline.Web.Api
                 return response;
             });
         }
+        [Route("deletemulti")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProductCategories)
+        {
+            return CreateHttpResponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listProductCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
+                    foreach (var item in listProductCategory)
+                    {
+                        _productCategoryService.Delete(item);
+                    }
 
+                    _productCategoryService.Save();
+
+                    response = request.CreateResponse(HttpStatusCode.OK, listProductCategory.Count);
+                }
+
+                return response;
+            });
+        }
     }
 }
