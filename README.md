@@ -1736,3 +1736,13 @@
 	2. Nhúng CK Finder  
 	3. Cấu hình CK Finder trỏ đến thư mục muốn quản lý 
 	4. Trỏ CK Editor vào Ck Finder 
+	
+#	Bài 35: Quản lý tag cho sản phẩm 
+	Các bước thực hiện 
+	1. Tạo trường soạn thảo tag cho sản phẩm 
+	2. Xử lý logic để thêm vào bảng Tag và ProductTag
+	3. Nhân sang form edit sản phẩm 
+	4. Xử lý logic edit tag cho sản phẩm 
+	-------------------------
+	add-migration addTagField
+	update-database
