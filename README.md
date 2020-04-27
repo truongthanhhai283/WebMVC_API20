@@ -1729,3 +1729,10 @@
 	4. Tạo nội dung form HTML 
 	5. Dùng bower để nhúng CK Editor 
 	6. Nhúng CK Editor 
+
+#	Bài 34: Nhúng CK Finder và kết nối với CK Editor 
+	Các bước thực hiện 
+	1. Download và nhúng CK Finder 
+	2. Nhúng CK Finder  
+	3. Cấu hình CK Finder trỏ đến thư mục muốn quản lý 
+	4. Trỏ CK Editor vào Ck Finder 
