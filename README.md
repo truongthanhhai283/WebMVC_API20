@@ -1720,3 +1720,12 @@
 	1. Tạo checkbox cho mỗi dòng 
 	2. Sử dụng $watch để check sự tay đổi của các checkbox 
 	3. Submit các dòng đã check lên server để xóa 
+	
+#	Bài 33: Tạo form thêm sản phẩm nhúng CK Editor 
+	Các bước thực hiện 
+	1. Tạo view productAddView.html và controller productAddController.js 
+	2. Nhúng controller vào index 
+	3. Tạo route cho add product view trong product.module.js 
+	4. Tạo nội dung form HTML 
+	5. Dùng bower để nhúng CK Editor 
+	6. Nhúng CK Editor 
