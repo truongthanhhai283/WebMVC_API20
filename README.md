@@ -1746,3 +1746,11 @@
 	-------------------------
 	add-migration addTagField
 	update-database
+	
+#	Bài 36: Quản lý nhiều ảnh cho sản phẩm 
+	Các bước thực hiện 
+	1. Tạo phần upload nhiều ảnh cho form sản phẩm 
+	2. Đọc danh sách ảnh rỗng và tạo 1 button thêm ảnh
+	3. Mỗi lần thêm ảnh bằng CKFinder lại thêm 1 ảnh vào list trong controller 
+	4. Thêm sản phẩm cũng xử lý để đưa list ảnh lên 
+	5. Lưu danh sách ảnh từ C#  vào DB với dạng JSON để quản lý ảnh 6. Cập nhật cũng tương tự nhưng phải đọc danh sách ảnh có sẵn 
