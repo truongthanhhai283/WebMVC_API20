@@ -1761,3 +1761,20 @@
 	1. Tạo form đăng nhập 
 	2. Cấu hình routing với parent view 
 	3. Điều hướng qua lại giữa các view 
+
+#	Bài 38: Đăng nhập quản trị sử dụng ASP.NET Identity 
+	Đặt vấn đề 
+		 Tạo ra cơ chế đăng nhập khi đăng nhập thành công sẽ tạo ra 1 token gửi về cho client Angular 
+		 Mỗi lần đăng nhập lại một token khác nhau 
+		 Mỗi request gửi lên phải kèm theo token này vào header của request 
+		 Token sẽ dc lưu sử dụng localStorageModule 
+		 Logout sẽ xóa token này đi. 
+		 Nếu không có token xem như user chưa đăng nhập 
+	Các bước thực hiện 
+	1. Tạo authentication service 
+	2. Cấu hình trong Startup
+	3. Tạo login service 
+	4. Tạo login controller
+	5. Hiển thị thông tin đăng nhập
+	6. Validate đăng nhập 
+	

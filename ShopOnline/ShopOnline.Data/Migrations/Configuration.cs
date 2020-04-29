@@ -2,7 +2,7 @@
 {
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
-    using ShopOnline.Model.Models;
+    using Model.Models;
     using System;
     using System.Collections.Generic;
     using System.Data.Entity;
@@ -35,7 +35,7 @@
 
             };
 
-            manager.Create(user, "123654$");
+            manager.Create(user, "123123");
 
             if (!roleManager.Roles.Any())
             {
@@ -50,7 +50,7 @@
         }
 
         private void CreateProductCategorySample(ShopOnline.Data.ShopOnlineDbContext context)
-        {          
+        {
             if (context.ProductCategories.Count() == 0)
             {
                 List<ProductCategory> listProductCategory = new List<ProductCategory>()
