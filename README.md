@@ -1778,3 +1778,16 @@
 	5. Hiển thị thông tin đăng nhập
 	6. Validate đăng nhập 
 	
+#	Bài 40: Ghép giao diện trang khách hàng sử dụng ASP.NET MVC 
+	Các bước thực hiện 
+		 Download template 
+		 Copy vào project các resource như images, css, js... 
+		 Copy HTML và tạo trang Layouts.cshtml 
+		 Chỉnh đường dẫn các file resource 
+		 Tạo RenderBody
+		 Tạo các partial 
+		 Chạy thử trang web 
+	Các tiêu chí 
+	1. Phải tối đa hóa việc giảm thiểu trùng lặp code
+	2. Dễ dàng tùy biến sau này 
+	3. Dễ dàng đọc code 
