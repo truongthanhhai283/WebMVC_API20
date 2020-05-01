@@ -98,6 +98,12 @@
     <Reference Include="Microsoft.Owin.Security.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
     </Reference>
+    <Reference Include="NWebsec, Version=6.0.0.0, Culture=neutral, PublicKeyToken=3613da5f958908a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NWebsec.6.0.0\lib\net45\NWebsec.dll</HintPath>
+    </Reference>
+    <Reference Include="NWebsec.Core, Version=3.0.0.0, Culture=neutral, PublicKeyToken=3613da5f958908a1, processorArchitecture=MSIL">
+      <HintPath>..\packages\NWebsec.Core.3.0.0\lib\net45\NWebsec.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -105,6 +111,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -4055,6 +4062,10 @@
     <Content Include="Assets\client\css\etalage.css" />
     <Content Include="Assets\client\css\form.css" />
     <Content Include="Assets\client\css\style.css" />
+    <Content Include="Assets\client\font-awesome-4.6.3\css\font-awesome.css" />
+    <Content Include="Assets\client\font-awesome-4.6.3\css\font-awesome.min.css" />
+    <Content Include="Assets\client\font-awesome-4.6.3\fonts\fontawesome-webfont.svg" />
+    <Content Include="Assets\client\font-awesome-4.6.3\HELP-US-OUT.txt" />
     <Content Include="Assets\client\images\a-star.png" />
     <Content Include="Assets\client\images\arrow1.png" />
     <Content Include="Assets\client\images\arrow2.png" />
@@ -4139,7 +4150,6 @@
     <Folder Include="Views\About\" />
     <Folder Include="Views\Account\" />
     <Folder Include="Views\Post\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -4373,6 +4383,42 @@
     <Content Include="AppSettings.config" />
     <Content Include="ConnectionStrings.config" />
     <Content Include="Assets\client\images\Thumbs.db" />
+    <Content Include="Assets\client\font-awesome-4.6.3\fonts\fontawesome-webfont.eot" />
+    <Content Include="Assets\client\font-awesome-4.6.3\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Assets\client\font-awesome-4.6.3\fonts\fontawesome-webfont.woff" />
+    <Content Include="Assets\client\font-awesome-4.6.3\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Assets\client\font-awesome-4.6.3\fonts\FontAwesome.otf" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\animated.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\bordered-pulled.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\core.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\fixed-width.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\font-awesome.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\icons.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\larger.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\list.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\mixins.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\path.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\rotated-flipped.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\screen-reader.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\stacked.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\less\variables.less" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\font-awesome.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_animated.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_bordered-pulled.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_core.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_fixed-width.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_icons.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_larger.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_list.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_mixins.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_path.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_rotated-flipped.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_screen-reader.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_stacked.scss" />
+    <Content Include="Assets\client\font-awesome-4.6.3\scss\_variables.scss" />
+    <None Include="NWebsecConfig\HttpHeaderSecurityModuleConfig.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Resources\AdminLTE-2.3.0.zip" />
@@ -4381,6 +4427,7 @@
     <Content Include="Views\Shared\Header.cshtml" />
     <Content Include="Views\Shared\Layouts.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Product\Category.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShopOnline.Common\ShopOnline.Common.csproj">

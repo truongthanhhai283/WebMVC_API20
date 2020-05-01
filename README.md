@@ -1856,3 +1856,9 @@
 		Lưu ý khi đặt tên biến id mặc định và các biến khác. 
 		Lưu ý thứ tự các cấu hình routing 
 	
+#	Bài 44: Tạo trang danh sách sản phẩm và phân trang danh sách
+	Các bước thực hiện 
+		Tạo mới trang danh sách sản phẩm
+		Thực viện phân trang tại Controller sử dụng Skip và Take
+		Hiển thị phân trang tại View 
+		Phải hiển thị số trang theo mong muốn khi có nhiều hơn số trang cần thiết. 
