@@ -80,6 +80,10 @@
     <Compile Include="Migrations\202004270606345_addTagField.designer.cs">
       <DependentUpon>202004270606345_addTagField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005011040134_addContentForSlice.cs" />
+    <Compile Include="Migrations\202005011040134_addContentForSlice.designer.cs">
+      <DependentUpon>202005011040134_addContentForSlice.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
@@ -128,6 +132,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004270606345_addTagField.resx">
       <DependentUpon>202004270606345_addTagField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005011040134_addContentForSlice.resx">
+      <DependentUpon>202005011040134_addContentForSlice.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

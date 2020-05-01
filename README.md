@@ -1764,12 +1764,12 @@
 
 #	Bài 38: Đăng nhập quản trị sử dụng ASP.NET Identity 
 	Đặt vấn đề 
-		 Tạo ra cơ chế đăng nhập khi đăng nhập thành công sẽ tạo ra 1 token gửi về cho client Angular 
-		 Mỗi lần đăng nhập lại một token khác nhau 
-		 Mỗi request gửi lên phải kèm theo token này vào header của request 
-		 Token sẽ dc lưu sử dụng localStorageModule 
-		 Logout sẽ xóa token này đi. 
-		 Nếu không có token xem như user chưa đăng nhập 
+		Tạo ra cơ chế đăng nhập khi đăng nhập thành công sẽ tạo ra 1 token gửi về cho client Angular 
+		Mỗi lần đăng nhập lại một token khác nhau 
+		Mỗi request gửi lên phải kèm theo token này vào header của request 
+		Token sẽ dc lưu sử dụng localStorageModule 
+		Logout sẽ xóa token này đi. 
+		Nếu không có token xem như user chưa đăng nhập 
 	Các bước thực hiện 
 	1. Tạo authentication service 
 	2. Cấu hình trong Startup
@@ -1780,14 +1780,62 @@
 	
 #	Bài 40: Ghép giao diện trang khách hàng sử dụng ASP.NET MVC 
 	Các bước thực hiện 
-		 Download template 
-		 Copy vào project các resource như images, css, js... 
-		 Copy HTML và tạo trang Layouts.cshtml 
-		 Chỉnh đường dẫn các file resource 
-		 Tạo RenderBody
-		 Tạo các partial 
-		 Chạy thử trang web 
+		Download template 
+		Copy vào project các resource như images, css, js... 
+		Copy HTML và tạo trang Layouts.cshtml 
+		Chỉnh đường dẫn các file resource 
+		Tạo RenderBody
+		Tạo các partial 
+		Chạy thử trang web 
 	Các tiêu chí 
 	1. Phải tối đa hóa việc giảm thiểu trùng lặp code
 	2. Dễ dàng tùy biến sau này 
 	3. Dễ dàng đọc code 
+	
+#	Bai 41 Binding cac thanh phan dung chung
+	Các bước thực hiện 
+		Tạo các service cho các bảng như Footers, Menu, Danh mục sản phẩm... 
+		Inject service vào controller vào controller 
+		Đọc dữ liệu và hiển thị ra view 
+	Các cách truyền dữ liệu từ Controller-View 
+		ViewModel
+		ViewBag 
+		ViewData
+		TempData
+		Session 
+	ViewModel 
+		Có thể truyền dữ liệu từ Controller
+		View và ngược lại dùng Form để submit từ View
+		 Controller. 
+			Tồn tại chỉ trong 1 request giữa View và Controller
+			Được gọi thông qua thuộc tính Model của class WebViewPage
+			Được truyền về thông qua lệnh return View hoặc PartialView 
+	ViewBag 
+		ViewBag là một thuộc tính động lưu giá trị dưới dạng Key/Value theo đặc tính kiểu dynamic của C# 4.0 Nó là Wrapper của ViewData dùng để truyền dữ liệu 1 chiều từ Controller 
+		 View 
+		ViewBag là một thuộc tính của lớp ControllerBase trong namespace System.Web.Mvc
+		Chỉ có tác dụng trong 1 request 
+		Nếu redirect thì giá trị sẽ trả về null 
+		Không đòi hỏi phải chuyển đổi kiểu khi lấy giá trị 
+	ViewData 
+		Là một đối tượng dictionary kế thừa từ ViewDataDictionary class
+		ViewData là một thuộc tính của ControllerBase class
+		Dùng để truyền dữ liệu từ Controller về View tương ứng
+		Chỉ có phạm vi trong 1 request
+		Nếu có redirect sẽ trở về null
+		Yêu cầu chuyển đổi sang kiểu tương ứng khi lấy giá trị ở view, phải check null để tránh lỗi. 
+	TempData 
+		Là một đối tượng dictionary dẫn xuất từ TempDataDictionary class được lưu trữ trong session ngắn hạn. TempData cũng là một thuộc tính của ControllerBase class TempData được dùng để  truyền dữ liệu từ request hiện thời đến các request tiếp theo (nghĩa là trang này sang trang khác) 
+		Nó có vòng đời rất ngắn đến khi view tiếp theo load xong. 
+		Đòi hỏi phải chuyển đổi kiểu khi lấy giá trị và check null để tránh lỗi 
+		Được dùng để lưu những message dùng 1 lần như lỗi hoặc message validation, có thể giữ lâu hơn với phương thức Keep() 
+	 
+	Session 
+		Session là một thuộc tính của class Controller nó thuộc kiểu HttpSessionStateBase
+		Cũng được sử dụng để truyền dữ liệu trong ứng dụng ASP.NET nhưng không giống các loại khác. Nó tồn tại trong toàn bộ phiên làm việc. 
+		Mặc định cấu hình của ASP.NET Application cho session là 20 phút. 
+		Nó có phạm vi toàn bộ phiên làm việc ở tất cả các controller.
+		Cũng đòi hỏi phải chuyển đổi kiểu khi get giá trị 
+
+#	Bài 42: Binding slide và sản phẩm ra trang chủ 		
+	add content slice: add-migration addContentForSlice

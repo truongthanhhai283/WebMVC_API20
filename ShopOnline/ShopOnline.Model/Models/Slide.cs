@@ -26,5 +26,7 @@ namespace ShopOnline.Model.Models
         public int? DisplayOrder { set; get; }
 
         public bool Status { set; get; }
+
+        public string Content { set; get; }
     }
 }
