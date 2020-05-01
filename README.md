@@ -1839,3 +1839,20 @@
 
 #	Bài 42: Binding slide và sản phẩm ra trang chủ 		
 	add content slice: add-migration addContentForSlice
+	
+#	Bài 43: Rewrite URL để tạo Friendly URL trong ASP.NET MVC 
+	Các điểm cần nhớ 
+		Route đóng vai trò quan trọng trong ASP.NET MVC Framework. Route ánh xạ một URL đến Controller trong MVC. Route chứa Url partern và điểu khiển url. Url partern được bắt đầu sau tên miền web (domain name). Route được cấu hình trong class RouteConfig. 
+		Route Constrants được dùng để hạn chế giá trị của tham số truyền vào. 
+		Route phải được đăng ký trong sự kiện Application_Start trong file Global.asax.cs. 
+	Sơ đồ xử lý 
+	Cấu hình Route 
+	Mẫu URL 
+	URL Controller Action Id http://domain/home HomeController Index null http://domain/account/add AccountController Add null http://domain/cart/edit/0727 CartController Edit 0727 
+	Cách đăng ký route 
+	Các bước thực hiện 
+		Định nghĩa mẫu URL mapping với Controller và ActionMethod thông qua file RouteConfig.cs 
+		Cách mapping có sử dụng ID truyền qua QueryString 
+		Lưu ý khi đặt tên biến id mặc định và các biến khác. 
+		Lưu ý thứ tự các cấu hình routing 
+	
