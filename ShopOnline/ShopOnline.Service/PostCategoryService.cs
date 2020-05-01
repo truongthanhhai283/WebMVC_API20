@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ShopOnline.Data.Infrastructure;
 using ShopOnline.Data.Repositories;
 using ShopOnline.Model.Models;
@@ -58,14 +59,14 @@ namespace ShopOnline.Service
             return _postCategoryRepository.GetSingleById(id);
         }
 
-        public void Update(PostCategory postCategory)
-        {
-            _postCategoryRepository.Update(postCategory);
-        }
-
         public void Save()
         {
             _unitOfWork.Commit();
+        }
+
+        public void Update(PostCategory postCategory)
+        {
+            _postCategoryRepository.Update(postCategory);
         }
     }
 }
