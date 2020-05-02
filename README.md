@@ -1870,3 +1870,8 @@
 #	Bài 47: Tạo trang chi tiết sản phẩm và sản phẩm liên quan 
 	add-migration addQuantityField
 	update-database
+	
+#	Bai 48 Danh sách tag và danh sách sản phẩm theo tag
+
+#	Bài 49: Xây dựng và quản lý các trang nội dung riêng lẻ 
+	
