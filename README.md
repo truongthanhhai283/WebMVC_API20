@@ -1874,4 +1874,14 @@
 #	Bai 48 Danh sách tag và danh sách sản phẩm theo tag
 
 #	Bài 49: Xây dựng và quản lý các trang nội dung riêng lẻ 
-	
+		
+#	Bài 50: Sử dụng Output Cache trong ASP.NET
+	Các tiêu chí để cache 
+		Nội dung ít thay đổi Lượng truy xuất thường xuyên 
+		Có nhiều loại cache khác nhau nhưng trong ASP.NET MVC thì OutputCache là dễ sử dụng nhất. 
+	Các thuộc tính của [OutputCache] 
+		Duration: thời gian tồn tại của Cache trước khi refresh, đơn vị giây 
+		Location: Vị trí lưu cache, mặc định là Any
+		VaryByParam: Các tham số của một method muốn cache
+		Ngoài ra có thể setting cache ở webconfig: 
+ 
