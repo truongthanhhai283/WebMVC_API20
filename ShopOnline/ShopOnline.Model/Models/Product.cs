@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Xml.Linq;
 using ShopOnline.Model.Abstract;
@@ -32,6 +34,7 @@ namespace ShopOnline.Model.Models
         public decimal Price { set; get; }
 
         public decimal? PromotionPrice { set; get; }
+
         public int? Warranty { set; get; }
 
         [MaxLength(500)]
@@ -48,5 +51,7 @@ namespace ShopOnline.Model.Models
 
         [ForeignKey("CategoryID")]
         public virtual ProductCategory ProductCategory { set; get; }
+
+        public virtual IEnumerable<ProductTag> ProductTags { set; get; }
     }
 }
