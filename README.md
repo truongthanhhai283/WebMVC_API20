@@ -1862,3 +1862,5 @@
 		Thực viện phân trang tại Controller sử dụng Skip và Take
 		Hiển thị phân trang tại View 
 		Phải hiển thị số trang theo mong muốn khi có nhiều hơn số trang cần thiết. 
+		
+#	Bài 45: Sắp xếp danh sách sản phẩm theo điều kiện 
