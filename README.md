@@ -1884,4 +1884,21 @@
 		Location: Vị trí lưu cache, mặc định là Any
 		VaryByParam: Các tham số của một method muốn cache
 		Ngoài ra có thể setting cache ở webconfig: 
- 
+
+#	Bài 51: Xây dựng trang liên hệ và làm việc với Google Map AP
+	Các bước thực hiện 
+		Tạo bảng ContactDetail trong DB thông qua Codefist bao gồm: ID, Code, Tên cty, Địa chỉ, Điện thoại, Email, Website, Thông tin thêm.
+		Tạo quản trị để thêm sửa xóa cho contact detail
+		Đọc dữ liệu ra trang liên hệ 
+		Đọc thông tin liên hệ mark vào Google Map thông qua API 
+	-----------------------------------
+	add migration adđetailContact / update-database
+	
+	https://developers.google.com/maps/documentation/javascript/tutorial
+	
+	https://developers.google.com/maps/documentation/javascript/infowindows
+	
+	https://developers.google.com/maps/documentation/javascript/examples/infowindow-simple
+	
+	https://console.cloud.google.com/apis/library/maps-backend.googleapis.com?q=Google%20Maps%20JavaScript%20API&id=fd73ab50-9916-4cde-a0f6-dc8be0a0d425&project=windy-furnace-180806
+	

@@ -40,6 +40,8 @@ namespace ShopOnline.Data
 
         public DbSet<Error> Errors { set; get; }
 
+        public DbSet<ContactDetail> ContactDetails { set; get; }
+
         public static ShopOnlineDbContext Create()
         {
             return new ShopOnlineDbContext();

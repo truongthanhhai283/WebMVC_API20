@@ -88,8 +88,13 @@
     <Compile Include="Migrations\202005020333470_addMoreQuantityProduct.designer.cs">
       <DependentUpon>202005020333470_addMoreQuantityProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005021205066_addDetailContact.cs" />
+    <Compile Include="Migrations\202005021205066_addDetailContact.designer.cs">
+      <DependentUpon>202005021205066_addDetailContact.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
@@ -142,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005020333470_addMoreQuantityProduct.resx">
       <DependentUpon>202005020333470_addMoreQuantityProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005021205066_addDetailContact.resx">
+      <DependentUpon>202005021205066_addDetailContact.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

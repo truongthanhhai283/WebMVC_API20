@@ -26,6 +26,7 @@
             CreateUser(context);
             //  This method will be called after migrating to the latest version.
             CreatePage(context);
+            CreateContactDetail(context);
 
 
         }
@@ -148,5 +149,43 @@
 
             }
         }
+
+        private void CreateContactDetail(ShopOnlineDbContext context)
+        {
+            if (context.ContactDetails.Count() == 0)
+            {
+                try
+                {
+                    var contactDetail = new ShopOnline.Model.Models.ContactDetail()
+                    {
+                        Name = "Shop thời trang",
+                        Address = "43/8-8 Pho Duc Chinh",
+                        Email = "truongthanhhai283@gmail.com",
+                        Lat = 16.084239,
+                        Lng = 108.242577,
+                        Phone = "0905629025",
+                        Website = "",
+                        Other = "",
+                        Status = true
+
+                    };
+                    context.ContactDetails.Add(contactDetail);
+                    context.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    foreach (var eve in ex.EntityValidationErrors)
+                    {
+                        Trace.WriteLine($"Entity of type \"{eve.Entry.Entity.GetType().Name}\" in state \"{eve.Entry.State}\" has the following validation error.");
+                        foreach (var ve in eve.ValidationErrors)
+                        {
+                            Trace.WriteLine($"- Property: \"{ve.PropertyName}\", Error: \"{ve.ErrorMessage}\"");
+                        }
+                    }
+                }
+
+            }
+        }
+
     }
 }
