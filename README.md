@@ -1864,3 +1864,9 @@
 		Phải hiển thị số trang theo mong muốn khi có nhiều hơn số trang cần thiết. 
 		
 #	Bài 45: Sắp xếp danh sách sản phẩm theo điều kiện 
+
+#	Bài 46: Tìm kiếm với auto implement
+
+#	Bài 47: Tạo trang chi tiết sản phẩm và sản phẩm liên quan 
+	add-migration addQuantityField
+	update-database
