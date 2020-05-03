@@ -1916,3 +1916,10 @@
 	install BotDetect, sendgrid
 	
 	https://myaccount.google.com/lesssecureapps
+	
+#	Bài 53: Tạo trang đăng ký thành viên 
+	Các bước thực hiện 
+		Submit thông tin liên hệ đến quản trị 
+		Kiểm tra trùng thông tin user name
+		Lắp captcha cho form
+		Cấu hình gửi mail Gửi email về cho user 
