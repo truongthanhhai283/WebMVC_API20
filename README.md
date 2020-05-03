@@ -1923,3 +1923,13 @@
 		Kiểm tra trùng thông tin user name
 		Lắp captcha cho form
 		Cấu hình gửi mail Gửi email về cho user 
+		
+#	Bài 54: Đăng nhập hệ thống với ASP.NET Identity 
+	Các bước thực hiện 
+		Đăng nhập bằng cơ chế sẵn có của ASP.NET Identity 
+		Thêm cơ chế lọc 2 loại authen của admin và client 
+		Đối với webAPI thì sẽ sử dụng based token
+		Đối với ASP.NET MVC sẽ sử dụng Cookie Authen 
+		Submit thông tin tư form lên 
+		Sau đó validate thông tin và cho phép đăng nhập nếu thành công.
+		Hiển thị thông tin đăng nhập. 
