@@ -1902,3 +1902,17 @@
 	
 	https://console.cloud.google.com/apis/library/maps-backend.googleapis.com?q=Google%20Maps%20JavaScript%20API&id=fd73ab50-9916-4cde-a0f6-dc8be0a0d425&project=windy-furnace-180806
 	
+#	Bài 52: Gửi phản hồi và gửi mail trong ASP.NET MVC 
+	Các bước thực hiện 
+		Tạo bảng Feedbacks và Service 
+		Submit thông tin liên hệ đến quản trị 
+		Lắp captcha cho form
+		Cấu hình gửi mail 
+		Gửi email về cho tài khoản quản trị được cấu hình trong system config 
+	------------------------------------------
+	add-migration/update-database addFeedbackTable
+	add-migration/update-database addFeedbackTable2
+	
+	install BotDetect, sendgrid
+	
+	https://myaccount.google.com/lesssecureapps

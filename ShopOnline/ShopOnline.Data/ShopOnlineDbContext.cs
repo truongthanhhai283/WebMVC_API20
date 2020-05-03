@@ -42,6 +42,8 @@ namespace ShopOnline.Data
 
         public DbSet<ContactDetail> ContactDetails { set; get; }
 
+        public DbSet<Feedback> Feedbacks { set; get; }
+
         public static ShopOnlineDbContext Create()
         {
             return new ShopOnlineDbContext();
