@@ -1941,3 +1941,13 @@
 		Cập nhật số lượng sản phẩm
 		Xóa sản phẩm và xóa tất cả đơn hàng
 		Thanh toán đơn hàng 
+		
+#	Bài 56: Tạo giỏ hàng trong ASP.NET – Phần 2
+	Các bước thực hiện 
+		Cập nhật số lượng sản phẩm 
+		Xóa tất cả đơn hàng 
+		Thanh toán đơn hàng 
+	--------------------
+	add-migration addCustomerID
+	
+	jqueryvalitation.org

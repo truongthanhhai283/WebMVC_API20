@@ -96,6 +96,10 @@
     <Compile Include="Migrations\202005030510316_addFeedbackTable.designer.cs">
       <DependentUpon>202005030510316_addFeedbackTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005040622156_addCustomerId.cs" />
+    <Compile Include="Migrations\202005040622156_addCustomerId.designer.cs">
+      <DependentUpon>202005040622156_addCustomerId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ContactDetailRepository.cs" />
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005030510316_addFeedbackTable.resx">
       <DependentUpon>202005030510316_addFeedbackTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005040622156_addCustomerId.resx">
+      <DependentUpon>202005040622156_addCustomerId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
