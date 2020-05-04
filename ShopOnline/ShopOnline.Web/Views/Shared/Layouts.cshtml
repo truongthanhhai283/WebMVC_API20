@@ -23,21 +23,24 @@ License URL: http://creativecommons.org/licenses/by/3.0/
   <style>.ui-autocomplete {z-index:1000}</style>
 </head>
 <body>
-  <!--header-->
-  @{Html.RenderAction("Header", "Home");}
-  <!---->
-  <div class="container">
-    @RenderBody()
-    @{Html.RenderAction("Category", "Home");}
-  </div>
+    <!--header-->
+    @{Html.RenderAction("Header", "Home");}
+    <!---->
+    <div class="container">
+        @RenderBody()
+        @{Html.RenderAction("Category", "Home");}
+    </div>
 
-  @{ Html.RenderAction("Footer", "Home");}
-  <div class="clearfix"> </div>  
+    @{ Html.RenderAction("Footer", "Home");}
+    <div class="clearfix"> </div>
 
-  <script src="/Assets/client/js/jquery.min.js"></script>
-  <script src="~/Assets/admin/libs/jquery-ui/jquery-ui.min.js"></script>
-  <!--script-->
-  <script src="~/Assets/client/js/common.js"></script>
-  @RenderSection("footerJS", required: false)
+    <script src="/Assets/client/js/jquery.min.js"></script>
+    <script src="~/Assets/admin/libs/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Assets/admin/libs/mustache/mustache.js"></script>
+    <script src="~/Assets/admin/libs/numeral/numeral.js"></script>
+    <!--script-->
+    <script src="~/Assets/client/js/common.js"></script>
+    <script src="~/Assets/client/js/controllers/shoppingCart.js"></script>
+    @RenderSection("footerJS", required: false)
 </body>
 </html>

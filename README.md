@@ -1933,3 +1933,11 @@
 		Submit thông tin tư form lên 
 		Sau đó validate thông tin và cho phép đăng nhập nếu thành công.
 		Hiển thị thông tin đăng nhập. 
+		
+#	Bài 55: Tạo giỏ hàng trong ASP.NET 
+	Các bước thực hiện 
+		Thêm mới sản phẩm vào giỏ hàng
+		Hiển thị danh sách sản phẩm trong giỏ hàng
+		Cập nhật số lượng sản phẩm
+		Xóa sản phẩm và xóa tất cả đơn hàng
+		Thanh toán đơn hàng 
