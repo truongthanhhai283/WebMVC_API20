@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShopOnline.Common.ViewModels;
 using ShopOnline.Data.Infrastructure;
 using ShopOnline.Data.Repositories;
 using ShopOnline.Model.Models;
@@ -37,7 +38,6 @@ namespace ShopOnline.Service
                     orderDetail.OrderID = order.ID;
                     _orderDetailRepository.Add(orderDetail);
                 }
-                _unitOfWork.Commit();
                 return true;
             }
             catch (Exception ex)
@@ -45,5 +45,7 @@ namespace ShopOnline.Service
                 throw;
             }
         }
+
+        
     }
 }

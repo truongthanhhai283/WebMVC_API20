@@ -108,6 +108,14 @@
     <Compile Include="Migrations\202005041045551_addGroupUser.designer.cs">
       <DependentUpon>202005041045551_addGroupUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005060919022_changeOrderDetail.cs" />
+    <Compile Include="Migrations\202005060919022_changeOrderDetail.designer.cs">
+      <DependentUpon>202005060919022_changeOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005061013139_RevenuesStatisticSP.cs" />
+    <Compile Include="Migrations\202005061013139_RevenuesStatisticSP.designer.cs">
+      <DependentUpon>202005061013139_RevenuesStatisticSP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\ApplicationGroupRepository.cs" />
@@ -183,6 +191,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005041045551_addGroupUser.resx">
       <DependentUpon>202005041045551_addGroupUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005060919022_changeOrderDetail.resx">
+      <DependentUpon>202005060919022_changeOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005061013139_RevenuesStatisticSP.resx">
+      <DependentUpon>202005061013139_RevenuesStatisticSP.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

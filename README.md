@@ -1970,5 +1970,43 @@
 	
 	install nuget asp.net.identity.ef
 
-
+#	Bài 58: Thống kê doanh thu sử dụng Store Procedure trong SQL 
+	Các bước thực hiện 
+		Tạo SQL Store Procedure trong SQL từ Entity Framework CodeFirst
+		Thực thi store procedure từ Entity Framework
+		Đọc thông tin ra bảng sử dụng AngularJS 
+		Vẽ biểu đồ thống kê theo số liệu 
+	----------------------------------------
+	add-migration/update-database changeOrderDetail
 	
+
+	Thống kê theo ngày
+		select CreatedDate, sum(od.quantity * od.price) as Revenues	from Orders as o
+		inner join OrderDetails as od
+		on o.ID=od.OrderID
+		group by o.createdDate
+	
+	Thống kê theo tháng	
+	select datepart(mm,o.CreatedDate), sum(od.quantity * od.price) as Revenues	from Orders as o
+		inner join OrderDetails as od
+		on o.ID=od.OrderID
+		group by datepart(mm,o.CreatedDate)
+	
+	Thống kê theo năm		
+	select datepart(yy,o.CreatedDate), sum(od.quantity * od.price) as Revenues	from Orders as o
+		inner join OrderDetails as od
+		on o.ID=od.OrderID
+		group by datepart(yy,o.CreatedDate)
+		
+	Thống kê doanh thu
+	select
+		o.CreatedDate as Date, 
+		sum(od.quantity * od.price) as Revenues,
+		sum((od.quantity * od.price) - (od.quantity * p.originalPrice)) as benefit
+		from Orders as o
+		inner join OrderDetails as od
+		on o.ID=od.OrderID
+		inner join Products p
+		on od.ProductID=p.ID
+		group by o.CreatedDate
+			

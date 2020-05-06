@@ -7,6 +7,7 @@
          'shoponline.product_categories',
          'shoponline.application_roles',
          'shoponline.application_users',
+           'shoponline.statistics',
          'shoponline.common'])
         .config(config)
         .config(configAuthentication);
