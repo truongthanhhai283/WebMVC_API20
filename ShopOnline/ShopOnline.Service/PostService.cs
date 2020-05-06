@@ -1,15 +1,12 @@
-﻿using ShopOnline.Data.Infrastructure;
+﻿using System;
+using System.Collections.Generic;
+using ShopOnline.Data.Infrastructure;
 using ShopOnline.Data.Repositories;
 using ShopOnline.Model.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopOnline.Service
 {
-    //Triển khai: Khai báo interface
     public interface IPostService
     {
         void Add(Post post);
@@ -20,20 +17,19 @@ namespace ShopOnline.Service
 
         IEnumerable<Post> GetAll();
 
-        //Lấy all trang
         IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
 
-        //Lấy ra 1 bản ghi
+        IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow);
+
         Post GetById(int id);
 
-        //Lấy ra theo tag
         IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow);
 
         void SaveChanges();
     }
+
     public class PostService : IPostService
     {
-        //Các repository cần gọi 
         IPostRepository _postRepository;
         IUnitOfWork _unitOfWork;
 
@@ -53,16 +49,21 @@ namespace ShopOnline.Service
             _postRepository.Delete(id);
         }
 
-        //Select được post và category
         public IEnumerable<Post> GetAll()
         {
             return _postRepository.GetAll(new string[] { "PostCategory" });
         }
 
+        public IEnumerable<Post> GetAllByCategoryPaging(int categoryId, int page, int pageSize, out int totalRow)
+        {
+            return _postRepository.GetMultiPaging(x => x.Status && x.CategoryID == categoryId, out totalRow, page, pageSize, new string[] { "PostCategory" });
+        }
+
         public IEnumerable<Post> GetAllByTagPaging(string tag, int page, int pageSize, out int totalRow)
         {
             //TODO: Select all post by tag
-            return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+            return _postRepository.GetAllByTag(tag, page, pageSize, out totalRow);
+
         }
 
         public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)

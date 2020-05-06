@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('shoponline.common', ['ui.router', 'ngBootbox', 'ngCkeditor'])
+    angular.module('shoponline.common', ['ui.router', 'ngBootbox', 'ngCkeditor', 'checklist-model'])
 })();

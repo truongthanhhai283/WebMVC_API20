@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ShopOnline.Data.Infrastructure;
 using ShopOnline.Data.Repositories;
 using ShopOnline.Model.Models;
@@ -58,6 +59,7 @@ namespace ShopOnline.Service
                 return _ProductCategoryRepository.GetAll();
 
         }
+
         public IEnumerable<ProductCategory> GetAllByParentId(int parentId)
         {
             return _ProductCategoryRepository.GetMulti(x => x.Status && x.ParentID == parentId);

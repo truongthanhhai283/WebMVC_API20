@@ -3,7 +3,10 @@
 (function () {
     angular.module('shoponline',
         ['shoponline.products',
+         'shoponline.application_groups',
          'shoponline.product_categories',
+         'shoponline.application_roles',
+         'shoponline.application_users',
          'shoponline.common'])
         .config(config)
         .config(configAuthentication);

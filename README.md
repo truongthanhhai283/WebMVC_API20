@@ -21,6 +21,9 @@
             builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
 		
+	5. Solving Data Diagram Error
+		Database -> Files -> Browser -> sa account
+		
 #	Bài 1: Giới thiệu tổng quan về dự án và công nghệ sử dụng 
 	*	Đây là một dự án website bán hàng trực tuyến có các chức năng sau:  
 			Admin quản trị sản phẩm, đơn hàng và tin bài  
@@ -1951,3 +1954,21 @@
 	add-migration addCustomerID
 	
 	jqueryvalitation.org
+	
+#	Bài 57: Quản lý user, phân quyền cho user sử dụng ASP.NET Identity 
+	Các bước thực hiện 
+		Chỉnh sửa cơ sở dữ liệu của các bảng trong phần Identity
+		Tạo phần Repository cho các bảng cần thiết
+		Tạo trang quản lý nhóm người dùng 
+		Tạo trang quản lý quyền 
+		Tạo trang quản lý người dùng 
+		Phân quyền cho từng nhóm
+		Áp dụng validate quyền vào method
+	-----------------------------
+	add-migration RenameTablesIdentity/ update-database
+	add-migration addGroupUser/ update-database
+	
+	install nuget asp.net.identity.ef
+
+
+	

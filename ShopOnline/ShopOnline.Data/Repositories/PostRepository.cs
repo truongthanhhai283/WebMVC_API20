@@ -1,7 +1,8 @@
-﻿using ShopOnline.Data.Infrastructure;
-using ShopOnline.Model.Models;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Data.Entity;
+using ShopOnline.Data.Infrastructure;
+using ShopOnline.Model.Models;
 using System.Linq;
 
 namespace ShopOnline.Data.Repositories

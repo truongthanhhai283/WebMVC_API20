@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ShopOnline.Data.Infrastructure
+﻿namespace ShopOnline.Data.Infrastructure
 {
     public class DbFactory : Disposable, IDbFactory
     {
@@ -14,7 +8,6 @@ namespace ShopOnline.Data.Infrastructure
         {
             return dbContext ?? (dbContext = new ShopOnlineDbContext());
         }
-
 
         protected override void DisposeCore()
         {

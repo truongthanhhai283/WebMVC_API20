@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShopOnline.Data.Infrastructure
 {
@@ -18,7 +16,6 @@ namespace ShopOnline.Data.Infrastructure
         // Marks an entity to be removed
         T Delete(T entity);
 
-        //Delete 1 record
         T Delete(int id);
 
         //Delete multi records
