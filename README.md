@@ -2051,4 +2051,16 @@
 		Add-Migration Name 
 		Update-database 
 	----------------------------------------
-				
+
+#	Bài 60: Các kỹ thuật tăng cường SEO cho website của bạn 
+	Các nguyên tắc tối ưu SEO cho website 
+		1. Tất cả trang web được thiết kế tối ưu về HTML các thẻ heading, list... 
+		2. Mỗi trang có một tiêu đề riêng, meta keywords và meta description. 
+		3. Các trang nội dung nên có share facebook, google, các tin liên quan, tag... 
+		4. Đường dẫn URL thân thiện dễ đọc và chứa từ khóa.
+		5. Trong website các link dẫn ra ngoài cần chèn thuộc tính ref=“no-follow”.
+		6. Hạn chế sử dụng ajax với các nội dung cần index vì spider khó crawl data.
+		7. Tốc độ load website cần được đảm bảo. 
+		8. Nên có sitemap và breadcrumb trong website 
+		9. Tối ưu hóa file robots.txt 
+		10.Khai báo website với các công cụ quản lý của Google. 

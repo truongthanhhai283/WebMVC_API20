@@ -28,7 +28,40 @@
             CreatePage(context);
             CreateContactDetail(context);
 
+            CreateConfigTitle(context);
 
+
+        }
+
+        private void CreateConfigTitle(ShopOnlineDbContext context)
+        {
+            if (!context.SystemConfigs.Any(x => x.Code == "HomeTitle"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeTitle",
+                    ValueString = "Trang chủ ShopOnline",
+
+                });
+            }
+            if (!context.SystemConfigs.Any(x => x.Code == "HomeMetaKeyword"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeMetaKeyword",
+                    ValueString = "Trang chủ ShopOnline",
+
+                });
+            }
+            if (!context.SystemConfigs.Any(x => x.Code == "HomeMetaDescription"))
+            {
+                context.SystemConfigs.Add(new SystemConfig()
+                {
+                    Code = "HomeMetaDescription",
+                    ValueString = "Trang chủ ShopOnline",
+
+                });
+            }
         }
         private void CreateUser(ShopOnlineDbContext context)
         {
