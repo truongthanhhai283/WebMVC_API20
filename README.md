@@ -2064,3 +2064,10 @@
 		8. Nên có sitemap và breadcrumb trong website 
 		9. Tối ưu hóa file robots.txt 
 		10.Khai báo website với các công cụ quản lý của Google. 
+
+#	Bài 63 Cách đóng gói dự án và publish lên hosting
+	ShopOnlineShop.web -> publish
+	SQL -> DB -> Backup
+
+#	Bài 65 Tích hợp thanh toán trực tuyến qua Ngân Lượng
+	

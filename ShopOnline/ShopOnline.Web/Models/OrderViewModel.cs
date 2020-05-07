@@ -41,6 +41,8 @@ namespace ShopOnline.Web.Models
         [MaxLength(128)]
         public string CustomerId { set; get; }
 
+        public string BankCode { set; get; }
+
         public IEnumerable<OrderDetailViewModel> OrderDetails { set; get; }
     }
 }

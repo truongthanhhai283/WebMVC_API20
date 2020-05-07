@@ -33,7 +33,7 @@ namespace ShopOnline.Web.Api
         [HttpGet]
         public HttpResponseMessage GetAll(HttpRequestMessage request)
         {
-            return CreateHttpResponse(request, () =>
+            Func<HttpResponseMessage> func = () =>
             {
                 var model = _productService.GetAll();
 
@@ -41,7 +41,8 @@ namespace ShopOnline.Web.Api
 
                 var response = request.CreateResponse(HttpStatusCode.OK, responseData);
                 return response;
-            });
+            };
+            return CreateHttpResponse(request, func);
         }
         [Route("getbyid/{id:int}")]
         [HttpGet]
@@ -71,7 +72,7 @@ namespace ShopOnline.Web.Api
                 totalRow = model.Count();
                 var query = model.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
 
-                var responseData = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(query);
+                var responseData = Mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(query.AsEnumerable());
 
                 var paginationSet = new PaginationSet<ProductViewModel>()
                 {
