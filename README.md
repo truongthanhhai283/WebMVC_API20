@@ -2009,4 +2009,46 @@
 		inner join Products p
 		on od.ProductID=p.ID
 		group by o.CreatedDate
-			
+
+#	Bài 59: Bổ túc kiến thức về Entity Framework 
+	Khái niệm 
+		Entity Framework là một nền tảng được sử dụng để làm việc với database thông qua cơ chế ánh xạ Object/Relational Mapping (ORM). Nhờ đó, bạn có thể truy vấn, thao tác với database gián tiếp thông qua các đối tượng lập trình. 
+	Các loại đối tượng trong EF 
+		ObjectContext đại diện cho một database. ObjectContext có chức năng quản lý các kết nối, định nghĩa mô hình dữ liệu với metadata và thao tác với database. Lớp này cũng có thể thêm vào các phương thức đại diện cho các stored procedure trong database. ObjectSet<TEntity> là một  một tập hợp các entity. Mỗi đối tượng này tương ứng với một table. Có thể lấy được các đối tượng này thông qua các property tương ứng của ObjectContext. EntityObject, ComplexObject là các lớp tương ứng cho một dòng dữ liệu của table trong database. Khác biệt chính giữa hai loại này là ComplexObject không chứa primary key. EntityCollection<TEntity> và EntityReference<TEntity>: là các đối tượng thể hiện mối quan hệ (relationship) giữa hai entity class. Mỗi đối tượng này có thể được truy xuất thông qua các property của entity class. 
+	Khái niệm Entity Framework Code First 
+		Entity Framework Code First được giới thiệu từ Entity Framework 4.1. Trong cách tiếp cận Code First, bạn có thể tập trung vào việc thiết kế Domain và bắt đầu tạo ra các lớp theo yêu cầu của Domain của bạn chứ không phải thiết kế cơ sở dữ liệu trước rồi sau đó tạo ra các lớp phù hợp với thiết kế cơ sở dữ liệu đó. Code First API sẽ tạo ra cơ sở dữ liệu dựa trên các lớp thực thể và lớp cấu hình của bạn. Đầu tiên bạn bắt đầu viết các lớp thay vì tập trung vào thiết kế cơ sở dữ liệu, sau đó khi bạn chạy ứng dụng, Code First API sẽ tạo ra cơ sở dữ liệu mới hoặc ánh xạ các lớp của bạn vào cơ sở dữ liệu đã tồn tại trước khi chạy ứng dụng của bạn. 
+	Các chiến lược khởi tạo DB 
+		Bạn đã tạo database sau khi chạy ứng dụng lần đầu tiên, nhưng những lần chạy khác thì sao? Code First API có tạo database mới mỗi lần bạn chạy ứng dụng không? Làm thế nào để cập nhật database khi bạn thay đổi mô hình? Để xử lý các kịch bản trên, bạn có thể sử dụng các kịch bản khởi tạo database. 
+		CreateDatabaseIfNotExists: Đây là giá trị mặc định. Như tên gọi, nó sẽ tạo database nếu chưa tồn tại. Tuy nhiên nếu bạn thay đổi mô hình và chạy ứng dụng với tùy chọn này thì sẽ xảy ra ngoại lệ. DropCreateDatabaseIfModelChanges: Tùy chọn này sẽ xóa database hiện tại và tạo mới database nếu mô hình của bạn thay đổi. DropCreateDatabaseAlways: Như tên gọi, tùy chọn này sẽ xóa database và tạo database mới mỗi khi bạn chạy ứng dụng bất kể mô hình của bạn có thay đổi hay không. Custom DB Initializer: Nếu 3 tùy chọn trên không đáp ứng được yêu cầu của bạn, bạn có thể tự viết khởi tạo database cho mình. 
+	Các chiến lược khởi tạo DB 
+	Tạo dữ liệu tự động (Seeding) 
+	Các mô hình trong Entity Framework 
+		Các thành phần chính trong Entity: 
+		Code là mã lệnh tạo thành các lớp đối tượng dữ liệu cho phép thao tác với dữ liệu. 
+		Model là sơ đồ gồm các hộp mô tả các thực thể và các đường nối kết mô tả các quan hệ. 
+		Database là cơ sở dữ liệu (có thể là SQL Server, Compact SQL Server, Local database, MySQL, Oracle,…) 
+		Có 3 cách sử dụng Entity Framework: Code First, Models First, Database First. 
+	Các mô hình trong Entity Framework 
+		Database first: là phương pháp chỉ nên dùng khi ta đã có sẵn CSDL (không phải tạo), EF Wizard sẽ tạo Model và Code cho ta. Models first: nên dùng khi ta bắt đầu thiết kế CSDL từ đầu (từ chưa có gì). Ta sẽ thiết kế mô hình CSDL (Model) EF sẽ tự tạo code cho ta, sau đó nhờ EF Wizard tạo CSDL.
+		Code first: nên dùng khi đã có mô hình CSDL, ta sẽ chỉ viết code từ đó tạo Database. 
+	So sánh LinQ to SQL và Entity FrameWork 
+		LINQ to SQL Chỉ làm việc với CSDL của SQL Server Tạo ra file .dbml 
+		Không hỗ trợ các kiểu phức tạp 
+		Không thể tạo CSDL từ đối tượng
+		Chỉ có kiểu ánh xạ 1-1 giữa đối tượng class với table/views
+		Sử dụng DataContext
+		Entity Framework
+		Có thể làm việc với các CSDL: Oracle, DB2, MySQL, SQL Server... 
+		Tạo ra file .edmx, .csdl, .msl, .ssdl hoặc các file class .cs thông thường
+		Hỗ trợ các kiểu phức tạp
+		Có thể tạo CSDL từ Model/Code đã thiết kế
+		Có thể ánh xạ 1-1, 1-nhiều, nhiều-1, nhiều-nhiều giữa đối tượng entity với table/view
+		Sử dụng DbContext, Entity SQL, ObjectContext. 
+	 
+	Cách migration trong EF Code First 
+		Lệnh enable migration: Enable-Migrations
+		Tự động hóa migration: AutomaticMigrationsEnabled  = true trong Configuration.cs
+		Add-Migration Name 
+		Update-database 
+	----------------------------------------
+				
