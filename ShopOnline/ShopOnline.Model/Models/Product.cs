@@ -8,6 +8,7 @@ using ShopOnline.Model.Abstract;
 namespace ShopOnline.Model.Models
 {
     [Table("Products")]
+    
     public class Product : Auditable
     {
         [Key]

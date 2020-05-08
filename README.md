@@ -25,6 +25,9 @@
 		Database -> Files -> Browser -> sa account
 		
 	6. Facebook.contact strong name type: delete facebook.contac.dll
+	
+	7. is not available! You either misspelled the module name or forgot to load it
+		chuot phai browser -> restore package
 		
 #	Bài 1: Giới thiệu tổng quan về dự án và công nghệ sử dụng 
 	*	Đây là một dự án website bán hàng trực tuyến có các chức năng sau:  

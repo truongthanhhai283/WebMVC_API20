@@ -23,16 +23,15 @@
         {
             CreateProductCategorySample(context);
             CreateSlide(context);
-            CreateUser(context);
             //  This method will be called after migrating to the latest version.
             CreatePage(context);
             CreateContactDetail(context);
 
             CreateConfigTitle(context);
-
+            CreateFooter(context);
+            CreateUser(context);
 
         }
-
         private void CreateConfigTitle(ShopOnlineDbContext context)
         {
             if (!context.SystemConfigs.Any(x => x.Code == "HomeTitle"))
@@ -78,18 +77,21 @@
                 FullName = "Truong Thanh Hai"
 
             };
-
-            manager.Create(user, "123456$");
-
-            if (!roleManager.Roles.Any())
+            if (manager.Users.Count(x => x.UserName == "tedu") == 0)
             {
-                roleManager.Create(new IdentityRole { Name = "Admin" });
-                roleManager.Create(new IdentityRole { Name = "User" });
+                manager.Create(user, "123654$");
+
+                if (!roleManager.Roles.Any())
+                {
+                    roleManager.Create(new IdentityRole { Name = "Admin" });
+                    roleManager.Create(new IdentityRole { Name = "User" });
+                }
+
+                var adminUser = manager.FindByEmail("truongthanhhai283@gmail.com");
+
+                manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
             }
-
-            var adminUser = manager.FindByEmail("truongthanhhai283@gmail.com");
-
-            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+           
         }
         private void CreateProductCategorySample(ShopOnline.Data.ShopOnlineDbContext context)
         {
@@ -111,7 +113,13 @@
         {
             if (context.Footers.Count(x => x.ID == CommonConstants.DefaultFooterId) == 0)
             {
-                string content = "";
+                string content = "Footer";
+                context.Footers.Add(new Footer()
+                {
+                    ID = CommonConstants.DefaultFooterId,
+                    Content = content
+                });
+                context.SaveChanges();
             }
         }
 
@@ -149,7 +157,6 @@
                 context.SaveChanges();
             }
         }
-
 
         private void CreatePage(ShopOnlineDbContext context)
         {
@@ -191,11 +198,11 @@
                 {
                     var contactDetail = new ShopOnline.Model.Models.ContactDetail()
                     {
-                        Name = "Shop thời trang",
-                        Address = "43/8-8 Pho Duc Chinh",
+                        Name = "Shop thời trang online",
+                        Address = "k34 Lê Văn Thứ",
                         Email = "truongthanhhai283@gmail.com",
-                        Lat = 16.084239,
-                        Lng = 108.242577,
+                        Lat = 21.0633645,
+                        Lng= 105.8053274,
                         Phone = "0905629025",
                         Website = "",
                         Other = "",
@@ -219,6 +226,5 @@
 
             }
         }
-
     }
 }
