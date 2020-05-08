@@ -24,6 +24,8 @@
 	5. Solving Data Diagram Error
 		Database -> Files -> Browser -> sa account
 		
+	6. Facebook.contact strong name type: delete facebook.contac.dll
+		
 #	Bài 1: Giới thiệu tổng quan về dự án và công nghệ sử dụng 
 	*	Đây là một dự án website bán hàng trực tuyến có các chức năng sau:  
 			Admin quản trị sản phẩm, đơn hàng và tin bài  
@@ -2070,4 +2072,8 @@
 	SQL -> DB -> Backup
 
 #	Bài 65 Tích hợp thanh toán trực tuyến qua Ngân Lượng
+
+#	Bài 66 Đăng nhập với Facebook và Google
+	install package facebook, google
+
 	
