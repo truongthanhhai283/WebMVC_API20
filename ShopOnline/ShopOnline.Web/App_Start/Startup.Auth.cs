@@ -7,10 +7,14 @@ using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
 using System;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ShopOnline.Common;
 using ShopOnline.Data;
 using ShopOnline.Model.Models;
+using ShopOnline.Service;
+using ShopOnline.Web.Infrastructure.Core;
 
 [assembly: OwinStartup(typeof(ShopOnline.Web.App_Start.Startup))]
 
@@ -49,7 +53,7 @@ namespace ShopOnline.Web.App_Start
                     // This is a security feature which is used when you change a password or add an external login to your account.  
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser>(
                         validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager,DefaultAuthenticationTypes.ApplicationCookie))
+                        regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager, DefaultAuthenticationTypes.ApplicationCookie))
                 }
             });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
@@ -64,13 +68,13 @@ namespace ShopOnline.Web.App_Start
             //   consumerSecret: "");
 
             app.UseFacebookAuthentication(
-               appId: "255060005901780",
-               appSecret: "2bcd6bf71f2d45788d9764624b29ad74");
+               appId: "1724156397871880",
+               appSecret: "398039cc7588d52f87a7adcefecc3210");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "177761000386-rrk38av5j09ikbtgidl4h6tnuimt6892.apps.googleusercontent.com",
-                ClientSecret = "ydH2TDeEJyoR8_2zw9pHLmLW"
+                ClientId = "712161982861-4d9bdgfvf6pti1vviifjogopqdqlft56.apps.googleusercontent.com",
+                ClientSecret = "T0cgiSG6Gi7BKMr-fCCkdErO"
             });
         }
         public class AuthorizationServerProvider : OAuthAuthorizationServerProvider
@@ -102,10 +106,21 @@ namespace ShopOnline.Web.App_Start
                 }
                 if (user != null)
                 {
-                    ClaimsIdentity identity = await userManager.CreateIdentityAsync(
-                                                           user,
-                                                           DefaultAuthenticationTypes.ExternalBearer);
-                    context.Validated(identity);
+                    var applicationGroupService = ServiceFactory.Get<IApplicationGroupService>();
+                    var listGroup = applicationGroupService.GetListGroupByUserId(user.Id);
+                    if (listGroup.Any(x => x.Name == CommonConstants.Administrator))
+                    {
+                        ClaimsIdentity identity = await userManager.CreateIdentityAsync(
+                                       user,
+                                       DefaultAuthenticationTypes.ExternalBearer);
+                        context.Validated(identity);
+                    }
+                    else
+                    {
+                        context.Rejected();
+                        context.SetError("invalid_group", "Bạn không phải là admin");
+                    }
+
                 }
                 else
                 {
@@ -125,5 +140,5 @@ namespace ShopOnline.Web.App_Start
         }
     }
 
- 
+
 }

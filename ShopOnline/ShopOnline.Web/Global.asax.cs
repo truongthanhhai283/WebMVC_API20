@@ -24,6 +24,9 @@ namespace ShopOnline.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             Database.SetInitializer<ShopOnlineDbContext>(new DropCreateDatabaseIfModelChanges<ShopOnlineDbContext>());
+
+            //get an instance of servie
+            // IFeedbackService service = ServiceFactory.Get<IFeedbackService>();
         }
     }
 }

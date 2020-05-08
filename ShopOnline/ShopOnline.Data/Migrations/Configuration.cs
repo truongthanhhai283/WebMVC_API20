@@ -77,7 +77,7 @@
                 FullName = "Truong Thanh Hai"
 
             };
-            if (manager.Users.Count(x => x.UserName == "tedu") == 0)
+            if (manager.Users.Count(x => x.UserName == "haitruong") == 0)
             {
                 manager.Create(user, "123654$");
 
