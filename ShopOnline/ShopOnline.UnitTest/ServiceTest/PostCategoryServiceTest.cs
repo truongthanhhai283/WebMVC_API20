@@ -11,7 +11,6 @@ namespace ShopOnline.UnitTest.ServiceTest
     [TestClass]
     public class PostCategoryServiceTest
     {
-        //Tạo đ/tượng giả
         private Mock<IPostCategoryRepository> _mockRepository;
         private Mock<IUnitOfWork> _mockUnitOfWork;
         private IPostCategoryService _categoryService;
@@ -55,10 +54,10 @@ namespace ShopOnline.UnitTest.ServiceTest
             category.Status = true;
 
             _mockRepository.Setup(m => m.Add(category)).Returns((PostCategory p) =>
-            {
-                p.ID = 1;
-                return p;
-            });
+              {
+                  p.ID = 1;
+                  return p;
+              });
 
             var result = _categoryService.Add(category);
 

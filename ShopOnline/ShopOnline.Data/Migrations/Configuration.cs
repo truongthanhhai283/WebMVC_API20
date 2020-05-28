@@ -198,12 +198,12 @@
                 {
                     var contactDetail = new ShopOnline.Model.Models.ContactDetail()
                     {
-                        Name = "Shop thời trang online",
-                        Address = "k34 Lê Văn Thứ",
+                        Name = "Shop thời trang",
+                        Address = "",
                         Email = "truongthanhhai283@gmail.com",
                         Lat = 21.0633645,
                         Lng= 105.8053274,
-                        Phone = "0905629025",
+                        Phone = "095423233",
                         Website = "",
                         Other = "",
                         Status = true
